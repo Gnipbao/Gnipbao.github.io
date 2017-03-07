@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Javascript闭包常见用法 - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="说明学过JavaScript这门语言的同学想必都听说过闭包一词,闭包在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是闭包呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)
+闭包首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Javascript闭包常见用法">
+<meta property="og:url" content="https://gnipbao.github.io/2016/05/25/js-closures/index.html">
+<meta property="og:site_name" content="Gnipbao's blog">
+<meta property="og:description" content="说明学过JavaScript这门语言的同学想必都听说过闭包一词,闭包在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是闭包呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)
+闭包首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,">
+<meta property="og:updated_time" content="2016-06-19T12:33:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Javascript闭包常见用法">
+<meta name="twitter:description" content="说明学过JavaScript这门语言的同学想必都听说过闭包一词,闭包在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是闭包呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)
+闭包首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/css3-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-js-closures" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Javascript闭包常见用法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/05/25/js-closures/" class="article-date">
+  <time datetime="2016-05-25T13:02:11.000Z" itemprop="datePublished">2016-05-25</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>学过JavaScript这门语言的同学想必都听说过闭包一词,<strong>闭包</strong>在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是<strong>闭包</strong>呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,并且函数可以被嵌套使用，so当我们使用函数套用的时候就产生了一个有趣的现象,我们在子函数中可以任意访问外部函数中定义的变量和方法，但是外面的函数却得不到里面函数中定义的变量。<a id="more"></a>也就是子作用域被封闭起来的。那么问题来了，如何拿到子作用域里的变量呢？so闭包被产生了。也就是说闭包的唯一目的就是获取子作用域。<br>知道了闭包产生的目的后，我们来看看<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Closures" target="_blank" rel="external">MDN</a>对闭包的解释。</p>
+<blockquote>
+<p>闭包是指能够访问自由变量的函数。换句话说，定义在闭包中的函数可以“记忆”它被创建时候的环境。</p>
+</blockquote>
+<p>MDN不愧是官方解释的这么晦涩难懂,摆明不想让大家学会闭包。<br>来看看jQuery作者对闭包的定义吧:</p>
+<blockquote>
+<p>a closure is the scope created when a function is declared that allows the<br> function to access and manipulate variables that are external to that function.<br> Put another way, closures allow a function to access all the variables, as well  as other functions, that are in scope when the function itself is declared.</p>
+</blockquote>
+<p> 翻译成汉语其实就是闭包可以获取，操作内部作用域中定义的变量。<br> 看完这段英语相信你已经对闭包有一定的感性理解。那么我们来从语法的角度分析一下闭包的组成。<br> 它由两部分构成：函数，以及创建该函数的环境。环境由闭包创建时在作用域中的任何局部变量组成。一说环境可能有点高深,我用数学表达来表述就是：<strong>闭包=函数(可匿名)+环境(作用域+局部变量)</strong>这下是不是很清晰了;<br> 下次面试官再问你的时候直接给他来条公式,然后给他解释下目的啥的,就完事大吉了!!</p>
+<h3 id="闭包的常见应用"><a href="#闭包的常见应用" class="headerlink" title="闭包的常见应用"></a>闭包的常见应用</h3><ol>
+<li>模拟私有变量 (Private variable)</li>
+</ol>
+<p>JavaScript 并不提供原生的支持，但是可以使用闭包模拟私有方法。私有方法不仅仅有利于限制对代码的访问：还提供了管理全局命名空间的强大能力，避免非核心的方法弄乱了代码的公共接口部分。这种方式也称为 模块模式</p>
+<p>module import variant<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params">window</span>)</span>&#123;</div><div class="line">   <span class="comment">//私有属性</span></div><div class="line">   <span class="keyword">var</span> privateThing;</div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">privateMethod</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">//私有方法</span></div><div class="line">   &#125;</div><div class="line">   <span class="built_in">window</span>.api = &#123;</div><div class="line">    <span class="comment">//暴露公共接口</span></div><div class="line">   &#125;</div><div class="line">&#125;)(<span class="built_in">window</span>)</div></pre></td></tr></table></figure></p>
+<p>module pattern<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> api = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="comment">// Private and in-place!</span></div><div class="line">   <span class="keyword">var</span> local = <span class="number">0</span>;  </div><div class="line">   <span class="comment">//私有作用域</span></div><div class="line">   <span class="function"><span class="keyword">function</span> <span class="title">counter</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="keyword">return</span> ++local;</div><div class="line">   &#125;</div><div class="line">   <span class="comment">//暴露给api</span></div><div class="line">   <span class="keyword">return</span> &#123;</div><div class="line">     <span class="attr">counter</span>: counter</div><div class="line">   &#125;;</div><div class="line"> &#125;)();</div><div class="line"> api.counter();</div><div class="line"> <span class="comment">// &lt;- 1</span></div><div class="line"> api.counter();</div><div class="line"> <span class="comment">// &lt;- 2</span></div></pre></td></tr></table></figure></p>
+<p>2.回调和计时器 (Callback and Timer)<br>在处理回调和计时器的时候我们可以使用闭包，这两个函数都需要异步被调用而且会很频繁的获取外部的数据.<br>异步回调(cb)最常见的是Ajax请求,例子就不举了用过jquery的同学都知道.</p>
+<p>Timer<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//这是一个60秒倒计时的计时器</span></div><div class="line"><span class="keyword">var</span> step = <span class="number">0</span>;</div><div class="line"><span class="keyword">var</span> timer = setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">   <span class="keyword">if</span>(step&lt;<span class="number">60</span>)&#123;</div><div class="line">      step++;</div><div class="line">   &#125;<span class="keyword">else</span>&#123;</div><div class="line">     clearInterval(timer);</div><div class="line">   &#125;</div><div class="line">&#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure></p>
+<p>3.绑定函数作用域(Binding function contexts)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">bind</span>(<span class="params">context,name</span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line"><span class="keyword">return</span> context[name].apply(context,<span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>4.参数归并技术以及函数柯里化 (Argument-merging technique and currying)<br>柯里化是指我们可以部分调用函数(返回我们预定义参数的函数),这个函数可以被以后调用.简单来说就是我们可以首先填充函数的一部分参数(并返回新的函数)这种技术通常被叫做函数柯里化。因为参数开始被填充了一部分到函数,后面一边通过返回新的函数里引用剩余的参数.所以形象的叫做参数归并技术。其本质是一样的。<br>举个例子:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.curry = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> fn = <span class="keyword">this</span>,</div><div class="line">args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args.concat(</div><div class="line"><span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</div><div class="line">&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.partial = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> fn = <span class="keyword">this</span>, args = <span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>);</div><div class="line"><span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> arg = <span class="number">0</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; args.length &amp;&amp; arg &lt; <span class="built_in">arguments</span>.length; i++) &#123;</div><div class="line"><span class="keyword">if</span> (args[i] === <span class="literal">undefined</span>) &#123;</div><div class="line">args[i] = <span class="built_in">arguments</span>[arg++];</div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> fn.apply(<span class="keyword">this</span>, args);</div><div class="line">&#125;;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>5.记忆和包裹函数(Memoization and Function wrapping)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Function</span>.prototype.memoized = <span class="function"><span class="keyword">function</span>(<span class="params">key</span>)</span>&#123;</div><div class="line"><span class="keyword">this</span>._values = <span class="keyword">this</span>._values || &#123;&#125;;</div><div class="line"><span class="keyword">return</span> <span class="keyword">this</span>._values[key] !== <span class="literal">undefined</span> ?</div><div class="line"><span class="keyword">this</span>._values[key] :</div><div class="line"><span class="keyword">this</span>._values[key] = <span class="keyword">this</span>.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</div><div class="line">&#125;;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isPrime</span>(<span class="params">num</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> prime = num != <span class="number">1</span>;</div><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">2</span>; i &lt; num; i++) &#123;</div><div class="line"><span class="keyword">if</span> (num % i == <span class="number">0</span>) &#123;</div><div class="line">prime = <span class="literal">false</span>;</div><div class="line"><span class="keyword">break</span>;</div><div class="line">on behavior <span class="number">107</span></div><div class="line">&#125;</div><div class="line">&#125;</div><div class="line"><span class="keyword">return</span> prime;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//记忆</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">memoizer</span>(<span class="params">memo,formula</span>)</span>&#123;</div><div class="line"> <span class="keyword">var</span> recur = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> result = memo[n];</div><div class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> result !== <span class="string">'number'</span>)&#123;</div><div class="line">       result = formula(recur, n);</div><div class="line">	memo[n] = result;</div><div class="line">	&#125;</div><div class="line">     <span class="keyword">return</span> result;</div><div class="line">  &#125;;</div><div class="line">  <span class="keyword">return</span> recur;</div><div class="line">&#125;</div><div class="line"><span class="comment">//阶乘</span></div><div class="line"><span class="keyword">var</span> factorial = memoizer([<span class="number">1</span>,<span class="number">1</span>],<span class="function"><span class="keyword">function</span>(<span class="params">recur,n</span>)</span>&#123;</div><div class="line"> <span class="keyword">return</span> n*recur(n<span class="number">-1</span>);</div><div class="line">&#125;)</div><div class="line"><span class="comment">//斐波那契数列</span></div><div class="line"><span class="keyword">var</span> fibonacci = memozier([<span class="number">0</span>,<span class="number">1</span>],<span class="function"><span class="keyword">function</span>(<span class="params">recur,n</span>)</span>&#123;</div><div class="line"> <span class="keyword">return</span> recur(n<span class="number">-1</span>)+recur(n<span class="number">-2</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+<p>wrap function<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">wrap</span>(<span class="params">object, method, wrapper</span>) </span>&#123;</div><div class="line"><span class="keyword">var</span> fn = object[method];</div><div class="line"><span class="keyword">return</span> object[method] = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line"><span class="keyword">return</span> wrapper.apply(<span class="keyword">this</span>, [fn.bind(<span class="keyword">this</span>)].concat(</div><div class="line"><span class="built_in">Array</span>.prototype.slice.call(<span class="built_in">arguments</span>)));</div><div class="line">&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>6.立即执行函数(IIFE)</p>
+<p>几种立即执行的写法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;)();</div><div class="line"> </div><div class="line"> !<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> +<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> -<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> ~<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> <span class="keyword">void</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> <span class="number">1</span>^<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div><div class="line"> </div><div class="line"> <span class="number">1</span>&amp;<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// child scope</span></div><div class="line"> &#125;();</div></pre></td></tr></table></figure></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/06/19/js-promise/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          JavaScript Promise
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/10/function/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript函数的特性&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-js-closures" data-title="Javascript闭包常见用法" data-url="https://gnipbao.github.io/2016/05/25/js-closures/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

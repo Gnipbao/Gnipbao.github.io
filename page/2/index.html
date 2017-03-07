@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Stay humble, stay hungry.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Gnipbao's blog">
+<meta property="og:url" content="https://gnipbao.github.io/page/2/index.html">
+<meta property="og:site_name" content="Gnipbao's blog">
+<meta property="og:description" content="Stay humble, stay hungry.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Gnipbao's blog">
+<meta name="twitter:description" content="Stay humble, stay hungry.">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/css3-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer">
+      <article id="post-common-function-set" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/30/common-function-set/">JavaScript中常用函数集合</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/30/common-function-set/" class="article-date">
+  <time datetime="2016-04-30T11:04:32.000Z" itemprop="datePublished">2016-04-30</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>我们都知道函数在JavaScript中的地位是非常重要的，函数式编程是这门语言的精髓，本文不会在这里针对函数去展开，后面我会详细介绍JavaScript的函数式编程的一些概念，这里主要是收集一些我们平时常用到的函数，如果能熟练应用的话会对你的编程速度有很大的提高。希望能帮助到更多的人：）</p>
+<h3 id="常用函数集合"><a href="#常用函数集合" class="headerlink" title="常用函数集合"></a>常用函数集合</h3><p>1.将类数组对象转换为真数组<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayify</span>(<span class="params">a</span>)</span>&#123;</div><div class="line">    <span class="keyword">return</span> [].slice.call(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>2.判断是否移动设备访问<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//first</span></div><div class="line"><span class="keyword">var</span> ua = navigator.userAgent.toLowerCase(),</div><div class="line">    isMobile = ua.search( <span class="regexp">/(iphone)|(ipod)|(android)/</span> ) === <span class="number">-1</span>; <span class="comment">//false是移动设备，true不是 </span></div><div class="line"><span class="comment">//second</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMobileUserAgent</span>(<span class="params"></span>)</span>&#123;</div><div class="line">    <span class="keyword">var</span> ua = navigator.userAgent.toLowerCase();</div><div class="line">    <span class="keyword">return</span> (<span class="regexp">/iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i</span>.test(ua));</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>3.获取当前路径<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/30/common-function-set/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-js-call" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/24/js-call/">JavaScript中call,apply,bind以及this的理解</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/24/js-call/" class="article-date">
+  <time datetime="2016-04-24T08:03:55.000Z" itemprop="datePublished">2016-04-24</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在JavaScript中调用一个函数将暂停当前函数的执行，传递控制权和参数给新函数。除了声明时定义形参，每个函数接收两个附加的参数：<code>this</code>和<code>arguments</code>。参数<code>this</code>在面向对象中非常重要，它取决于调用的模式。在JavaScript中共有四种<strong>调用模式：</strong>方法调用模式、函数调用模式、构造器调用模式、和<code>apply()</code>,<code>call()</code>方法调用模式。这些模式在如何初始化关键参数this存在差异。本文首先要提到的是this，抛开this单独去说这些方法是没有意义的。然后是如何妙用call,apply,bind这些方法去改变<code>this</code>的指向。</p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li>this在不同模式下的意义</li>
+<li>借鸡下蛋之妙用call，apply</li>
+<li>深入理解bind函数
+        
+          <p class="article-more-link">
+            <a href="/2016/04/24/js-call/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
+      <article id="post-javascript-array" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/04/23/javascript-array/">JavaScript原生数组</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2016/04/23/javascript-array/" class="article-date">
+  <time datetime="2016-04-23T02:58:51.000Z" itemprop="datePublished">2016-04-23</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p> 数组是类似列表的对象，在原型中提供了一些遍历以及改变其中对象的方法。JavaScript数组的长度及其中元素的类型都是不固定的。因为数组的长度可以随时增长或缩减，所以JavaScript 数组不保证是密集的。通常情况下，这是一些方便的特性；如果这些特性不适用于你的特定使用场景，你可以考虑使用固定类型数组。在JavaScript中数组可以使用数组构造函<code>Array</code>被创建,为了方便一般用中括号<code>[]</code>创建,<code>Arrays</code>继承<code>Object</code>的原型.<code>typeof</code>检测数组的类型会返回<code>object</code>,可是使用[]instanceof Array,会返回true,也就是说在JavaScript中存在类似数组的<code>Array-like</code>的对象<code>objects</code>,例如:strings,<code>arguments</code>对象,arguments对象不是数组的实例,但是它有<code>length</code>属性,它的值和数组的下标属性之间是有关系的并且length是可变的(例如, push, splice, 等) 会改变<code>Array</code>的 <code>length</code>属性。因此它可以像任何数组一样去遍历.这篇文章主要介绍一些<code>Array.prototype</code>中常用的方法,尽可能揭开每一种方法的真面纱。</p>
+<p> <img src="/images/Array.png" alt="JavaScript-Array"><br> 你可以在你的浏览器控制台里面尝试！<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/04/23/javascript-array/#more">Read More</a>
+          </p>
+        
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+</article>
+
+
+    
+      <nav id="page-nav">
+        <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      </nav>
+    </section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
