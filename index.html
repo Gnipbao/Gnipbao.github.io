@@ -61,7 +61,7 @@
   </div>
 </header>
     <section id="main" class="outer">
-      <article id="post-js-promise" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-Uint8Array-to-string" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -69,15 +69,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/19/js-promise/">JavaScript Promise</a>
+      <a class="article-title" href="/2017/12/16/Uint8Array-to-string/">Uint8Array to string in Javascript</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/06/19/js-promise/" class="article-date">
-  <time datetime="2016-06-19T12:35:57.000Z" itemprop="datePublished">2016-06-19</time>
+      <a href="/2017/12/16/Uint8Array-to-string/" class="article-date">
+  <time datetime="2017-12-16T15:17:05.000Z" itemprop="datePublished">2017-12-16</time>
 </a>
       
   <div class="article-category">
@@ -88,18 +88,21 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>  我们都知道JavaScript是单线程的，这意味着任何两句代码都不能同时运行，它们得一个接一个来。在浏览器中，JavaScript 和其他任务共享一个线程，不同的浏览器略有差异，但大体上这些和 JavaScript共享线程的任务包括重绘、更新样式、用户交互等，所有这些任务操作都会阻塞其他任务。<br>   作为人类，你是多线程的。你可以用多个手指同时敲键盘，也可以一边开车一遍电话。唯一的全局阻塞函数是打喷嚏，打喷嚏期间所有其他事务都会暂停。很烦人对么？尤其是当你开着车打着电话的时候。我们都不喜欢这样打喷嚏的代码。
-        
-          <p class="article-more-link">
-            <a href="/2016/06/19/js-promise/#more">Read More</a>
-          </p>
-        
+        <h3 id="Little-strings"><a href="#Little-strings" class="headerlink" title="Little strings"></a>Little strings</h3><p>少量数据使用超出异常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * little arrays (&gt;=100k characters), otherwise you'll get exceptions as RangeError : Maximum call </span></span><br><span class="line"><span class="comment"> * stack size exceeded or Out of stack space.</span></span><br><span class="line"><span class="comment"> * @returns &#123;string&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uint8arrayToStringMethod</span>(<span class="params">myUint8Arr</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, myUint8Arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Browser-implementation"><a href="#Browser-implementation" class="headerlink" title="Browser implementation"></a>Browser implementation</h3><p>浏览器环境使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/TextEncoder/TextEncoder" target="_blank" rel="noopener">TextEncoder</a> 和 <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/TextDecoder" target="_blank" rel="noopener">TextDecoder</a> 原生方法实现，注意兼容性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert an Uint8Array into a string.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;String&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Decodeuint8arr</span>(<span class="params">uint8array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextDecoder(<span class="string">"utf-8"</span>).decode(uint8array);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert a string into a Uint8Array.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;Uint8Array&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Encodeuint8arr</span>(<span class="params">myString</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextEncoder(<span class="string">"utf-8"</span>).encode(myString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Crossplatform-method"><a href="#Crossplatform-method" class="headerlink" title="Crossplatform method"></a>Crossplatform method</h3><p>跨平台依赖性低运行良好</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http://www.onicos.com/staff/iz/amuse/javascript/expert/utf.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* utf.js - UTF-8 &lt;=&gt; UTF-16 convertion</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Copyright (C) 1999 Masanao Izumo &lt;iz@onicos.co.jp&gt;</span></span><br><span class="line"><span class="comment"> * Version: 1.0</span></span><br><span class="line"><span class="comment"> * LastModified: Dec 25 1999</span></span><br><span class="line"><span class="comment"> * This library is free.  You can redistribute it and/or modify it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Utf8ArrayToStr</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> out, i, len, c;</span><br><span class="line">    <span class="keyword">var</span> char2, char3;</span><br><span class="line"></span><br><span class="line">    out = <span class="string">""</span>;</span><br><span class="line">    len = array.length;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; len) &#123;</span><br><span class="line">    c = array[i++];</span><br><span class="line">    <span class="keyword">switch</span>(c &gt;&gt; <span class="number">4</span>)</span><br><span class="line">    &#123; </span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">case</span> <span class="number">5</span>: <span class="keyword">case</span> <span class="number">6</span>: <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        <span class="comment">// 0xxxxxxx</span></span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(c);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">12</span>: <span class="keyword">case</span> <span class="number">13</span>:</span><br><span class="line">        <span class="comment">// 110x xxxx   10xx xxxx</span></span><br><span class="line">        char2 = array[i++];</span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(((c &amp; <span class="number">0x1F</span>) &lt;&lt; <span class="number">6</span>) | (char2 &amp; <span class="number">0x3F</span>));</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">14</span>:</span><br><span class="line">        <span class="comment">// 1110 xxxx  10xx xxxx  10xx xxxx</span></span><br><span class="line">        char2 = array[i++];</span><br><span class="line">        char3 = array[i++];</span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(((c &amp; <span class="number">0x0F</span>) &lt;&lt; <span class="number">12</span>) |</span><br><span class="line">                       ((char2 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">6</span>) |</span><br><span class="line">                       ((char3 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Large-blocks"><a href="#Large-blocks" class="headerlink" title="Large blocks"></a>Large blocks</h3><p>  大量数据异步情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Converts an array buffer to a string</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;Uin8&#125; uint8arr | The buffer to convert</span></span><br><span class="line"><span class="comment"> * @param &#123;Function&#125; callback | The function to call when conversion is complete</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">largeuint8ArrToString</span>(<span class="params">uint8arr, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bb = <span class="keyword">new</span> Blob([uint8arr]);</span><br><span class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> FileReader();</span><br><span class="line">    f.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        callback(e.target.result);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    f.readAsText(bb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example</span></span><br><span class="line"><span class="comment">// "Hello" in Uint8Array format</span></span><br><span class="line"><span class="keyword">var</span> myuint8Arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">72</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>, <span class="number">32</span>, <span class="number">33</span>]);</span><br><span class="line"></span><br><span class="line">largeuint8ArrToString(myuint8Arr,<span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// Hello</span></span><br><span class="line">    <span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
 
     </footer>
   
@@ -109,7 +112,7 @@
 
 
     
-      <article id="post-js-closures" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-js-get-ip" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -117,15 +120,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/25/js-closures/">Javascript闭包常见用法</a>
+      <a class="article-title" href="/2017/12/16/js-get-ip/">如何使用JavaScript获取IP地址</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/05/25/js-closures/" class="article-date">
-  <time datetime="2016-05-25T13:02:11.000Z" itemprop="datePublished">2016-05-25</time>
+      <a href="/2017/12/16/js-get-ip/" class="article-date">
+  <time datetime="2017-12-16T15:15:16.000Z" itemprop="datePublished">2017-12-16</time>
 </a>
       
   <div class="article-category">
@@ -136,19 +139,60 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>学过JavaScript这门语言的同学想必都听说过闭包一词,<strong>闭包</strong>在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是<strong>闭包</strong>呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)</p>
-<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,并且函数可以被嵌套使用，so当我们使用函数套用的时候就产生了一个有趣的现象,我们在子函数中可以任意访问外部函数中定义的变量和方法，但是外面的函数却得不到里面函数中定义的变量。
-        
-          <p class="article-more-link">
-            <a href="/2016/05/25/js-closures/#more">Read More</a>
-          </p>
-        
+        <p><img src="https://user-images.githubusercontent.com/16514704/33058545-0f4cbaa2-cecb-11e7-9a47-03f37b541cba.png" alt="articleocw-57dfeb2a430a6"><br>JavaScript是无法获得或存储在客户端的IP。但是由于JavaScript能够发送HTTP请求，而服务器端语言能够获取用户的公网IP，所以你可以利用这个获取IP。 换句话说，如果你想得到一个用户就取决于请求任何服务器检索公网IP。 随着WebRTC技术的发展，利用rtcpeerconnection可以检索用户私有IP。</p>
+<h2 id="使用-webRTC-获取私有IP"><a href="#使用-webRTC-获取私有IP" class="headerlink" title="使用 webRTC (获取私有IP)"></a>使用 webRTC (获取私有IP)</h2><p>RTCPeerConnection技术详细可见<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/RTCPeerConnection" target="_blank" rel="noopener">MDN</a><br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Get the user IP throught the webkitRTCPeerConnection</span></span><br><span class="line"><span class="comment"> * @param onNewIP &#123;Function&#125; listener function to expose the IP locally</span></span><br><span class="line"><span class="comment"> * @return undefined</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getUserIP</span>(<span class="params">onNewIP</span>) </span>&#123; <span class="comment">//  onNewIp - your listener function for new IPs</span></span><br><span class="line">    <span class="comment">//compatibility for firefox and chrome</span></span><br><span class="line">    <span class="keyword">var</span> myPeerConnection = <span class="built_in">window</span>.RTCPeerConnection || <span class="built_in">window</span>.mozRTCPeerConnection || <span class="built_in">window</span>.webkitRTCPeerConnection;</span><br><span class="line">    <span class="keyword">var</span> pc = <span class="keyword">new</span> myPeerConnection(&#123;</span><br><span class="line">        iceServers: []</span><br><span class="line">    &#125;),</span><br><span class="line">    noop = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;&#125;,</span><br><span class="line">    localIPs = &#123;&#125;,</span><br><span class="line">    ipRegex = <span class="regexp">/([0-9]&#123;1,3&#125;(\.[0-9]&#123;1,3&#125;)&#123;3&#125;|[a-f0-9]&#123;1,4&#125;(:[a-f0-9]&#123;1,4&#125;)&#123;7&#125;)/g</span>,</span><br><span class="line">    key;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">iterateIP</span>(<span class="params">ip</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!localIPs[ip]) onNewIP(ip);</span><br><span class="line">        localIPs[ip] = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">     <span class="comment">//create a bogus data channel</span></span><br><span class="line">    pc.createDataChannel(<span class="string">""</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// create offer and set local description</span></span><br><span class="line">    pc.createOffer().then(<span class="function"><span class="keyword">function</span>(<span class="params">sdp</span>) </span>&#123;</span><br><span class="line">        sdp.sdp.split(<span class="string">'\n'</span>).forEach(<span class="function"><span class="keyword">function</span>(<span class="params">line</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">if</span> (line.indexOf(<span class="string">'candidate'</span>) &lt; <span class="number">0</span>) <span class="keyword">return</span>;</span><br><span class="line">            line.match(ipRegex).forEach(iterateIP);</span><br><span class="line">        &#125;);</span><br><span class="line">        </span><br><span class="line">        pc.setLocalDescription(sdp, noop, noop);</span><br><span class="line">    &#125;).catch(<span class="function"><span class="keyword">function</span>(<span class="params">reason</span>) </span>&#123;</span><br><span class="line">        <span class="comment">// An error occurred, so handle the failure to connect</span></span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    <span class="comment">//listen for candidate events</span></span><br><span class="line">    pc.onicecandidate = <span class="function"><span class="keyword">function</span>(<span class="params">ice</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) <span class="keyword">return</span>;</span><br><span class="line">        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage</span></span><br><span class="line"></span><br><span class="line">getUserIP(<span class="function"><span class="keyword">function</span>(<span class="params">ip</span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"Got IP! :"</span> + ip);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用第三方服务-获取公网IP"><a href="#使用第三方服务-获取公网IP" class="headerlink" title="使用第三方服务(获取公网IP)"></a>使用第三方服务(获取公网IP)</h2><ul>
+<li><p>不安全的http链接</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$.getJSON(<span class="string">'http://ipinfo.io'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(data);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>安全的https链接(推荐)</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>API URI</th>
+<th>Response Type</th>
+<th>Sample Output (IPv4)</th>
+<th>Sample Output (IPv6)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://api.ipify.org" target="_blank" rel="noopener">https://api.ipify.org</a></td>
+<td>text</td>
+<td>11.111.111.111</td>
+<td>？</td>
+</tr>
+<tr>
+<td><a href="https://api.ipify.org?format=json" target="_blank" rel="noopener">https://api.ipify.org?format=json</a></td>
+<td>json</td>
+<td>{“ip”:”11.111.111.111”}</td>
+<td>？</td>
+</tr>
+<tr>
+<td><a href="https://api.ipify.org?format=jsonp" target="_blank" rel="noopener">https://api.ipify.org?format=jsonp</a></td>
+<td>jsonp</td>
+<td>callback({“ip”:”11.111.111.111”})</td>
+<td>？</td>
+</tr>
+<tr>
+<td><a href="https://api.ipify.org?format=jsonp&amp;callback=getip" target="_blank" rel="noopener">https://api.ipify.org?format=jsonp&amp;callback=getip</a></td>
+<td>jsonp</td>
+<td>getip({“ip”:”11.111.111.111”});</td>
+<td>？</td>
+</tr>
+</tbody>
+</table>
+<p>可以使用jsonp形式在页面上。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript">  <span class="function"><span class="keyword">function</span> <span class="title">getIP</span>(<span class="params">json</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">    <span class="built_in">document</span>.write(<span class="string">"My public IP address is: "</span>, json.ip);</span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"application/javascript"</span> <span class="attr">src</span>=<span class="string">"https://api.ipify.org?format=jsonp&amp;callback=getIP"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>Have fun 🥇 </p>
+
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript-howto-IP/">JavaScript howto IP</a></li></ul>
 
     </footer>
   
@@ -158,7 +202,7 @@
 
 
     
-      <article id="post-function" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-js-download-pdf" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -166,15 +210,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/function/">JavaScript函数的特性</a>
+      <a class="article-title" href="/2017/12/16/js-download-pdf/">如何使用JavaScript下载文件</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/05/10/function/" class="article-date">
-  <time datetime="2016-05-10T14:34:19.000Z" itemprop="datePublished">2016-05-10</time>
+      <a href="/2017/12/16/js-download-pdf/" class="article-date">
+  <time datetime="2017-12-16T15:11:54.000Z" itemprop="datePublished">2017-12-16</time>
 </a>
       
   <div class="article-category">
@@ -185,25 +229,20 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p>javascript对函数的实现是最好的，函数可以说是javascript的灵魂，它几乎可以说是无所不能的，函数包含一组语句，他们是JavaScript的基础模块单元，用与代码复用、信息隐藏和组合调用。函数用与指定对象行为。</p>
-<blockquote>
-<p><strong>所谓编程就是将一组需求分解成函数与数据结构的技能</strong>。</p>
-</blockquote>
-<ul>
-<li>函数对象(Function Object)</li>
-<li>函数字面量(Function Literal)</li>
-<li>调用(Invocation)
-        
-          <p class="article-more-link">
-            <a href="/2016/05/10/function/#more">Read More</a>
-          </p>
-        
+        <p><img src="https://user-images.githubusercontent.com/16514704/33000867-8eaca104-cde5-11e7-83d1-eee77e1eccdb.png" alt="articleocw-59983b4f358aa"></p>
+<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><p>使用<a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/createObjectURL" target="_blank" rel="noopener">window.URL.createObjectURL</a>和<a href="https://developer.mozilla.org/en-US/docs/Web/API/URL/revokeObjectURL" target="_blank" rel="noopener">window.URL.revokeObjectURL</a> method和blob对象实现文件下载</p>
+<h2 id="精简版封装"><a href="#精简版封装" class="headerlink" title="精简版封装"></a>精简版封装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 创建并下载文件</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; fileName 文件名</span></span><br><span class="line"><span class="comment"> * @param  &#123;String&#125; content  文件内容</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveAs</span>(<span class="params">content, filename</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> link = <span class="built_in">document</span>.createElement(<span class="string">'a'</span>);</span><br><span class="line">    <span class="keyword">var</span> blob = <span class="keyword">new</span> Blob([content]);</span><br><span class="line">    link.download = filename;</span><br><span class="line">    link.href = URL.createObjectURL(blob);</span><br><span class="line">    link.click();</span><br><span class="line">    URL.revokeObjectURL(blob);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://jsbin.com/celufakibe/edit?html,js,output" target="_blank" rel="noopener">在线实例</a></p>
+<h2 id="更好的封装"><a href="#更好的封装" class="headerlink" title="更好的封装"></a>更好的封装</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> URL = <span class="built_in">window</span>.URL || <span class="built_in">window</span>.webkitURL;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">saveAs</span>(<span class="params">blob, filename</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> type = blob.type;</span><br><span class="line">	<span class="keyword">var</span> force_saveable_type = <span class="string">'application/octet-stream'</span>;</span><br><span class="line">	<span class="keyword">if</span> (type &amp;&amp; type != force_saveable_type) &#123; <span class="comment">// 强制下载，而非在浏览器中打开</span></span><br><span class="line">		<span class="keyword">var</span> slice = blob.slice || blob.webkitSlice || blob.mozSlice;</span><br><span class="line">		blob = slice.call(blob, <span class="number">0</span>, blob.size, force_saveable_type);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">var</span> url = URL.createObjectURL(blob);</span><br><span class="line">	<span class="keyword">var</span> save_link = <span class="built_in">document</span>.createElementNS(<span class="string">'http://www.w3.org/1999/xhtml'</span>, <span class="string">'a'</span>);</span><br><span class="line">	save_link.href = url;</span><br><span class="line">	save_link.download = filename;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">var</span> event = <span class="keyword">new</span> MouseEvent(<span class="string">"click"</span>, &#123;</span><br><span class="line">			bubbles: <span class="literal">true</span>,</span><br><span class="line">			cancelable: <span class="literal">true</span>,</span><br><span class="line">			view: <span class="built_in">window</span></span><br><span class="line">		&#125;);</span><br><span class="line">	save_link.dispatchEvent(event);</span><br><span class="line">	URL.revokeObjectURL(url);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><a href="https://jsbin.com/fitaxehiku/edit?html,js,console,output" target="_blank" rel="noopener">在线实例</a></p>
+<h2 id="最佳方案"><a href="#最佳方案" class="headerlink" title="最佳方案"></a>最佳方案</h2><p>直接使用<a href="https://github.com/eligrey/FileSaver.js" target="_blank" rel="noopener">FileSaver</a>库。也许在某些浏览器需要实现Blob对象可以使用<a href="https://github.com/eligrey/Blob.js" target="_blank" rel="noopener">Blob.js</a>。（ps:IE10以下不支持注意兼容性）<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> oReq = <span class="keyword">new</span> XMLHttpRequest();</span><br><span class="line"><span class="comment">// The Endpoint of your server </span></span><br><span class="line"><span class="keyword">var</span> URLToPDF = <span class="string">"https://mozilla.github.io/pdf.js/web/compressed.tracemonkey-pldi-09.pdf"</span>;</span><br><span class="line"><span class="comment">// Configure XMLHttpRequest</span></span><br><span class="line">oReq.open(<span class="string">"GET"</span>, URLToPDF, <span class="literal">true</span>);</span><br><span class="line"><span class="comment">// Important to use the blob response type</span></span><br><span class="line">oReq.responseType = <span class="string">"blob"</span>;</span><br><span class="line"><span class="comment">// When the file request finishes</span></span><br><span class="line"><span class="comment">// Is up to you, the configuration for error events etc.</span></span><br><span class="line">oReq.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// Once the file is downloaded, open a new window with the PDF</span></span><br><span class="line">    <span class="comment">// Remember to allow the POP-UPS in your browser</span></span><br><span class="line">    <span class="keyword">var</span> file = <span class="keyword">new</span> Blob([oReq.response], &#123; </span><br><span class="line">        type: <span class="string">'application/pdf'</span> </span><br><span class="line">    &#125;);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// Generate file download directly in the browser !</span></span><br><span class="line">    saveAs(file, <span class="string">"mypdffilename.pdf"</span>);</span><br><span class="line">&#125;;</span><br><span class="line">oReq.send();</span><br></pre></td></tr></table></figure></p>
+
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pdf-JavaScript-下载/">pdf JavaScript 下载</a></li></ul>
 
     </footer>
   
@@ -214,7 +253,7 @@
 
     
       <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
       </nav>
     </section>
     <footer id="footer">

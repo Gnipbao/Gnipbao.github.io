@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Uint8Array to string in Javascript - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+<meta name="keywords" content="JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Uint8Array to string in Javascript">
+<meta property="og:url" content="https://gnipbao.github.io/2017/12/16/Uint8Array-to-string/index.html">
+<meta property="og:site_name" content="Gnipbao&#39;s blog">
+<meta property="og:description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2017-12-16T15:17:39.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Uint8Array to string in Javascript">
+<meta name="twitter:description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/h5-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-Uint8Array-to-string" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Uint8Array to string in Javascript
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/16/Uint8Array-to-string/" class="article-date">
+  <time datetime="2017-12-16T15:17:05.000Z" itemprop="datePublished">2017-12-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Little-strings"><a href="#Little-strings" class="headerlink" title="Little strings"></a>Little strings</h3><p>少量数据使用超出异常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * little arrays (&gt;=100k characters), otherwise you'll get exceptions as RangeError : Maximum call </span></span><br><span class="line"><span class="comment"> * stack size exceeded or Out of stack space.</span></span><br><span class="line"><span class="comment"> * @returns &#123;string&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uint8arrayToStringMethod</span>(<span class="params">myUint8Arr</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, myUint8Arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Browser-implementation"><a href="#Browser-implementation" class="headerlink" title="Browser implementation"></a>Browser implementation</h3><p>浏览器环境使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/TextEncoder/TextEncoder" target="_blank" rel="noopener">TextEncoder</a> 和 <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/TextDecoder" target="_blank" rel="noopener">TextDecoder</a> 原生方法实现，注意兼容性。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert an Uint8Array into a string.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;String&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Decodeuint8arr</span>(<span class="params">uint8array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextDecoder(<span class="string">"utf-8"</span>).decode(uint8array);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert a string into a Uint8Array.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;Uint8Array&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Encodeuint8arr</span>(<span class="params">myString</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextEncoder(<span class="string">"utf-8"</span>).encode(myString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Crossplatform-method"><a href="#Crossplatform-method" class="headerlink" title="Crossplatform method"></a>Crossplatform method</h3><p>跨平台依赖性低运行良好</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// http://www.onicos.com/staff/iz/amuse/javascript/expert/utf.txt</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* utf.js - UTF-8 &lt;=&gt; UTF-16 convertion</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Copyright (C) 1999 Masanao Izumo &lt;iz@onicos.co.jp&gt;</span></span><br><span class="line"><span class="comment"> * Version: 1.0</span></span><br><span class="line"><span class="comment"> * LastModified: Dec 25 1999</span></span><br><span class="line"><span class="comment"> * This library is free.  You can redistribute it and/or modify it.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Utf8ArrayToStr</span>(<span class="params">array</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> out, i, len, c;</span><br><span class="line">    <span class="keyword">var</span> char2, char3;</span><br><span class="line"></span><br><span class="line">    out = <span class="string">""</span>;</span><br><span class="line">    len = array.length;</span><br><span class="line">    i = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(i &lt; len) &#123;</span><br><span class="line">    c = array[i++];</span><br><span class="line">    <span class="keyword">switch</span>(c &gt;&gt; <span class="number">4</span>)</span><br><span class="line">    &#123; </span><br><span class="line">      <span class="keyword">case</span> <span class="number">0</span>: <span class="keyword">case</span> <span class="number">1</span>: <span class="keyword">case</span> <span class="number">2</span>: <span class="keyword">case</span> <span class="number">3</span>: <span class="keyword">case</span> <span class="number">4</span>: <span class="keyword">case</span> <span class="number">5</span>: <span class="keyword">case</span> <span class="number">6</span>: <span class="keyword">case</span> <span class="number">7</span>:</span><br><span class="line">        <span class="comment">// 0xxxxxxx</span></span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(c);</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">12</span>: <span class="keyword">case</span> <span class="number">13</span>:</span><br><span class="line">        <span class="comment">// 110x xxxx   10xx xxxx</span></span><br><span class="line">        char2 = array[i++];</span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(((c &amp; <span class="number">0x1F</span>) &lt;&lt; <span class="number">6</span>) | (char2 &amp; <span class="number">0x3F</span>));</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      <span class="keyword">case</span> <span class="number">14</span>:</span><br><span class="line">        <span class="comment">// 1110 xxxx  10xx xxxx  10xx xxxx</span></span><br><span class="line">        char2 = array[i++];</span><br><span class="line">        char3 = array[i++];</span><br><span class="line">        out += <span class="built_in">String</span>.fromCharCode(((c &amp; <span class="number">0x0F</span>) &lt;&lt; <span class="number">12</span>) |</span><br><span class="line">                       ((char2 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">6</span>) |</span><br><span class="line">                       ((char3 &amp; <span class="number">0x3F</span>) &lt;&lt; <span class="number">0</span>));</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> out;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Large-blocks"><a href="#Large-blocks" class="headerlink" title="Large blocks"></a>Large blocks</h3><p>  大量数据异步情况</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Converts an array buffer to a string</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @param &#123;Uin8&#125; uint8arr | The buffer to convert</span></span><br><span class="line"><span class="comment"> * @param &#123;Function&#125; callback | The function to call when conversion is complete</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">largeuint8ArrToString</span>(<span class="params">uint8arr, callback</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> bb = <span class="keyword">new</span> Blob([uint8arr]);</span><br><span class="line">    <span class="keyword">var</span> f = <span class="keyword">new</span> FileReader();</span><br><span class="line">    f.onload = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">        callback(e.target.result);</span><br><span class="line">    &#125;;</span><br><span class="line">    </span><br><span class="line">    f.readAsText(bb);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Usage example</span></span><br><span class="line"><span class="comment">// "Hello" in Uint8Array format</span></span><br><span class="line"><span class="keyword">var</span> myuint8Arr = <span class="keyword">new</span> <span class="built_in">Uint8Array</span>([<span class="number">72</span>, <span class="number">101</span>, <span class="number">108</span>, <span class="number">108</span>, <span class="number">111</span>, <span class="number">32</span>, <span class="number">33</span>]);</span><br><span class="line"></span><br><span class="line">largeuint8ArrToString(myuint8Arr,<span class="function"><span class="keyword">function</span>(<span class="params">text</span>)</span>&#123;</span><br><span class="line">    <span class="comment">// Hello</span></span><br><span class="line">    <span class="built_in">console</span>.log(text);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JavaScript/">JavaScript</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/12/16/js-get-ip/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何使用JavaScript获取IP地址&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-Uint8Array-to-string" data-title="Uint8Array to string in Javascript" data-url="https://gnipbao.github.io/2017/12/16/Uint8Array-to-string/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>vim headbook - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="vim分为四种模式： 概述 普通模式（normal mode） 插入模式（insert mode） 可视模式（visual mode） 命令模式（excute mode）  下面整理了常用的快捷键和记忆方法（结合英文的记忆方法法） 目录 普通模式 光标移动 查找 剪切复制粘贴 滚屏   插入模式 可视模式 命令模式 替换命令     普通模式光标移动   按键 效果 记忆方法     h j k">
+<meta name="keywords" content="vim">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vim headbook">
+<meta property="og:url" content="https://gnipbao.github.io/2017/12/16/vim-headbook/index.html">
+<meta property="og:site_name" content="Gnipbao&#39;s blog">
+<meta property="og:description" content="vim分为四种模式： 概述 普通模式（normal mode） 插入模式（insert mode） 可视模式（visual mode） 命令模式（excute mode）  下面整理了常用的快捷键和记忆方法（结合英文的记忆方法法） 目录 普通模式 光标移动 查找 剪切复制粘贴 滚屏   插入模式 可视模式 命令模式 替换命令     普通模式光标移动   按键 效果 记忆方法     h j k">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16514704/31593352-c87d9cfc-b1f3-11e7-914b-51ffebccf59c.jpeg">
+<meta property="og:updated_time" content="2017-12-16T15:07:05.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="vim headbook">
+<meta name="twitter:description" content="vim分为四种模式： 概述 普通模式（normal mode） 插入模式（insert mode） 可视模式（visual mode） 命令模式（excute mode）  下面整理了常用的快捷键和记忆方法（结合英文的记忆方法法） 目录 普通模式 光标移动 查找 剪切复制粘贴 滚屏   插入模式 可视模式 命令模式 替换命令     普通模式光标移动   按键 效果 记忆方法     h j k">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16514704/31593352-c87d9cfc-b1f3-11e7-914b-51ffebccf59c.jpeg">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/h5-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-vim-headbook" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      vim headbook
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2017/12/16/vim-headbook/" class="article-date">
+  <time datetime="2017-12-16T15:05:50.000Z" itemprop="datePublished">2017-12-16</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://user-images.githubusercontent.com/16514704/31593352-c87d9cfc-b1f3-11e7-914b-51ffebccf59c.jpeg" alt="vim"><br>vim分为四种模式：</p>
+<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
+<li>普通模式（<code>normal mode</code>）</li>
+<li>插入模式（<code>insert mode</code>）</li>
+<li>可视模式（<code>visual mode</code>）</li>
+<li>命令模式（<code>excute mode</code>）</li>
+</ul>
+<p><strong>下面整理了常用的快捷键和记忆方法（结合英文的记忆方法法）</strong></p>
+<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
+<li><a href="#1">普通模式</a><ul>
+<li><a href="#1.1">光标移动</a></li>
+<li><a href="#1.2">查找</a></li>
+<li><a href="#1.3">剪切复制粘贴</a></li>
+<li><a href="#1.4">滚屏</a></li>
+</ul>
+</li>
+<li><a href="#2">插入模式</a></li>
+<li><a href="#3">可视模式</a></li>
+<li><a href="#4">命令模式</a><ul>
+<li><a href="#4.1">替换命令</a></li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a><a name="1">普通模式</a></h2><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a><a name="1.1">光标移动</a></h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>h</code> <code>j</code> <code>k</code> <code>l</code></td>
+<td>向左/下/上/右移动</td>
+<td>←↑↓→</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>移动到下个单词开头</td>
+<td>word</td>
+</tr>
+<tr>
+<td><code>W</code></td>
+<td>移动到下个单词开头(包含标点)</td>
+<td>Word</td>
+</tr>
+<tr>
+<td><code>e</code></td>
+<td>移动到下个单词结尾</td>
+<td>end</td>
+</tr>
+<tr>
+<td><code>E</code></td>
+<td>移动到下个单词结尾(单词含标点)</td>
+<td>End</td>
+</tr>
+<tr>
+<td><code>b</code></td>
+<td>移动到上个单词开头</td>
+<td>back</td>
+</tr>
+<tr>
+<td><code>B</code></td>
+<td>移动到上个单词结尾(单词含标点)</td>
+<td>Back</td>
+</tr>
+<tr>
+<td><code>0</code></td>
+<td>移动到行首</td>
+<td>hard ⇤</td>
+</tr>
+<tr>
+<td><code>^</code></td>
+<td>移动到行首的非空白符</td>
+<td>soft ⇤</td>
+</tr>
+<tr>
+<td><code>$</code></td>
+<td>移动到行尾</td>
+<td>⇥</td>
+</tr>
+<tr>
+<td><code>H</code></td>
+<td>当前屏幕的第一行</td>
+<td>High</td>
+</tr>
+<tr>
+<td><code>M</code></td>
+<td>当前屏幕的中间</td>
+<td>Middle</td>
+</tr>
+<tr>
+<td><code>L</code></td>
+<td>当前页的的最后一行</td>
+<td>Low</td>
+</tr>
+<tr>
+<td><code>gg</code></td>
+<td>移动到文件第一行</td>
+<td>goto line1</td>
+</tr>
+<tr>
+<td><code>G</code></td>
+<td>移动到文件最后一行</td>
+<td>Goto EOF</td>
+</tr>
+<tr>
+<td><code>5G</code></td>
+<td>移动到第五行</td>
+<td>-Goto line5</td>
+</tr>
+</tbody>
+</table>
+<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a><a name="1.2">查找</a></h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>f{char}</code>/<code>F{char}</code></td>
+<td>在行内向下/向上查找字符{char} （光标在字符上）</td>
+<td>find/Find</td>
+</tr>
+<tr>
+<td><code>t{char}</code>/<code>T{char}</code></td>
+<td>在行内向下/向上查找字符{char}（光标在字符前面）</td>
+<td>till /Till</td>
+</tr>
+<tr>
+<td><code>;</code>/<code>,</code></td>
+<td>跟<code>f</code>/<code>F</code>/<code>t</code>/<code>T</code>结合使用，，跟查找顺序相同/相反的下一个匹配项</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>/pattern</code></td>
+<td>文档向下查找匹配项</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>?pattern</code></td>
+<td>文档内向上查匹配项</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n</code>/<code>N</code></td>
+<td>跟<code>/</code>和<code>?</code>结合使用，跟查找顺序相同/相反的下一个匹配项</td>
+<td>next/Next</td>
+</tr>
+</tbody>
+</table>
+<h3 id="剪切-复制-粘贴"><a href="#剪切-复制-粘贴" class="headerlink" title="剪切, 复制, 粘贴"></a><a name="1.3">剪切, 复制, 粘贴</a></h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>yy</code></td>
+<td>复制当前行</td>
+<td>yank</td>
+</tr>
+<tr>
+<td><code>5yy</code></td>
+<td>复制 5 行</td>
+<td>5次yank</td>
+</tr>
+<tr>
+<td><code>yw</code></td>
+<td>当光标在单词首字母处，复制当前单词</td>
+<td>yank word</td>
+</tr>
+<tr>
+<td><code>yaw</code></td>
+<td>当光标在单词内部，复制当前单词（单词后面空格也复制）</td>
+<td>yank around word</td>
+</tr>
+<tr>
+<td><code>yiw</code></td>
+<td>当光标在单词内部，复制当前单词（单词后面空格不复制）</td>
+<td>yank inside word</td>
+</tr>
+<tr>
+<td><code>p</code></td>
+<td>在光标后粘贴</td>
+<td>paste</td>
+</tr>
+<tr>
+<td><code>P</code></td>
+<td>在光标前粘贴</td>
+<td>Paste</td>
+</tr>
+<tr>
+<td><code>dd</code></td>
+<td>剪切当前行</td>
+<td>delete</td>
+</tr>
+<tr>
+<td><code>2dd</code></td>
+<td>剪切 2 行</td>
+<td>2次delete</td>
+</tr>
+<tr>
+<td><code>dw</code>/<code>dW</code></td>
+<td>光标在单词首字母处，剪切当前单词</td>
+<td>delete word</td>
+</tr>
+<tr>
+<td><code>daw</code>/<code>daW</code></td>
+<td>剪切当前单词(后面有空格也剪切)</td>
+<td>delete around word</td>
+</tr>
+<tr>
+<td><code>diw</code>/<code>diW</code></td>
+<td>剪切当前单词(后面有空格也剪切)</td>
+<td>delete inside word</td>
+</tr>
+<tr>
+<td><code>D</code></td>
+<td>剪切, 从光标位置到行末</td>
+<td>Delete ⇥</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>向后剪切掉一个字符，不用进入插入模式</td>
+<td>向后x掉</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td>向前剪切掉一个字符，不用进入插入模式</td>
+<td>向前X掉</td>
+</tr>
+<tr>
+<td><code>J</code></td>
+<td>去掉行尾的换行符，即连接两行</td>
+<td>Join lines</td>
+</tr>
+<tr>
+<td><code>u</code></td>
+<td>撤销</td>
+<td>undo</td>
+</tr>
+<tr>
+<td><code>&lt;ctrl-r&gt;</code></td>
+<td>重做</td>
+<td>redo</td>
+</tr>
+</tbody>
+</table>
+<h3 id="滚屏"><a href="#滚屏" class="headerlink" title="滚屏"></a><a name="1.4">滚屏</a></h3><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&lt;Ctrl + b&gt;</code></td>
+<td>向后滚动一屏</td>
+<td>backwards</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl + f&gt;</code></td>
+<td>向前滚动一屏</td>
+<td>forwards</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl + d&gt;</code></td>
+<td>向后滚动半屏</td>
+<td>down</td>
+</tr>
+<tr>
+<td><code>&lt;Ctrl + u&gt;</code></td>
+<td>向前滚动半屏</td>
+<td>up</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a><a name="2">插入模式</a></h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>i</code></td>
+<td>从光标前开始插入字符</td>
+<td>insert</td>
+</tr>
+<tr>
+<td><code>I</code></td>
+<td>从行首开始插入字符</td>
+<td>Insert</td>
+</tr>
+<tr>
+<td><code>a</code></td>
+<td>从光标后开始插入字符</td>
+<td>append</td>
+</tr>
+<tr>
+<td><code>A</code></td>
+<td>从行尾开始插入字符</td>
+<td>Append</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>在当前行之下另起一行, 开始插入字符</td>
+<td>open a new line</td>
+</tr>
+<tr>
+<td><code>O</code></td>
+<td>在当前行之上另起一行, 开始插入字符</td>
+<td>Open a new line</td>
+</tr>
+<tr>
+<td><code>s</code></td>
+<td>删除当前字符，然后进入插入模式(替换)</td>
+<td>substitute</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td>删除当前行，然后进入插入模式（替换）</td>
+<td>substitute</td>
+</tr>
+<tr>
+<td><code>r</code></td>
+<td>替换当前字符（其实是属于replace模式）</td>
+<td>replace</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td>替换连续的几个字符（属于replace模式）</td>
+<td>Replace</td>
+</tr>
+<tr>
+<td><code>cw</code>/<code>cW</code></td>
+<td>删掉一个单词/带标点的单词，然后进入插入模式</td>
+<td>change</td>
+</tr>
+<tr>
+<td><code>C</code></td>
+<td>删除光标所在行的光标后面的内容</td>
+<td>Change</td>
+</tr>
+<tr>
+<td><code>&lt;Esc&gt;</code></td>
+<td>退出插入模式</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="可视模式"><a href="#可视模式" class="headerlink" title="可视模式"></a><a name="3">可视模式</a></h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>v</code></td>
+<td>选择字符</td>
+<td>visual</td>
+</tr>
+<tr>
+<td><code>V</code></td>
+<td>选择行</td>
+<td>Visual line</td>
+</tr>
+<tr>
+<td><code>&lt;ctrl-v&gt;</code></td>
+<td>选择块</td>
+<td>visual block</td>
+</tr>
+<tr>
+<td><code>gv</code></td>
+<td>重复上次的高亮区域</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>o</code></td>
+<td>结合可视模式用的<code>o</code>，回到活动端点</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>vw</code></td>
+<td>光标在单词首字母处，选择单词</td>
+<td>visual word</td>
+</tr>
+<tr>
+<td><code>vaw</code></td>
+<td>选择单词（包括单词后面的空格）</td>
+<td>visual around world</td>
+</tr>
+<tr>
+<td><code>viw</code></td>
+<td>选择单词（不包括单词后面的空格）</td>
+<td>visual inside world</td>
+</tr>
+<tr>
+<td><code>vit</code></td>
+<td>选择标签内的内容（html）</td>
+<td>visual inside tags</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a><a name="4">命令模式</a></h2><table>
+<thead>
+<tr>
+<th>按键</th>
+<th>效果</th>
+<th>记忆方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>:w</code></td>
+<td>保存、写入</td>
+<td>write</td>
+</tr>
+<tr>
+<td><code>:x</code>/<code>:wq</code></td>
+<td>保存并退出</td>
+<td>write quit</td>
+</tr>
+<tr>
+<td><code>:q!</code></td>
+<td>直接退出</td>
+<td>quit</td>
+</tr>
+<tr>
+<td><code>r filename</code></td>
+<td>读文件内容到当前文件中</td>
+<td>read filename</td>
+</tr>
+<tr>
+<td><code>w filename</code></td>
+<td>将当前文件内容另存到另一个文件</td>
+<td>write filename</td>
+</tr>
+<tr>
+<td><code>!command</code></td>
+<td>执行命令</td>
+<td>!command</td>
+</tr>
+<tr>
+<td><code>r!command</code></td>
+<td>读入命令的输出</td>
+<td>read !command</td>
+</tr>
+<tr>
+<td><code>:set number</code></td>
+<td>设置行符</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>:syntax on</code>/<code>:syntax off</code></td>
+<td>开启/关闭代码高亮</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a><a name="4.1">替换命令</a></h3><ol>
+<li><p><code>:s/target/replacement/</code>：替换当前行的第一个<code>target</code>为<code>replacement</code></p>
+<p><code>:s/target/replacement/g</code>：替换当前行的所有的<code>target</code>为<code>replacement</code></p>
+</li>
+<li><p><code>:n,$s/target/replacement/</code>：替换第n到最后一行的第一个<code>target</code>为<code>replacement</code></p>
+<p><code>:n,$s/target/replacement/g</code>：替换第n到最后一行的所有的<code>target</code>为<code>replacement</code></p>
+</li>
+<li><p><code>:%s/target/replacement</code>：替换所有行的第一个<code>target</code>为<code>replacement</code></p>
+<p><code>:%s/target/replacement/g</code>：替换所有行的所有的<code>target</code>为<code>replacement</code></p>
+</li>
+<li><p>用<code>#</code>或<code>+</code>作为分隔符，<code>/</code>作为匹配项中的内容:</p>
+<p><code>:s#target/#/replacement#g</code>：替换所有行的第一个<code>target/</code>为<code>/replacement</code></p>
+<p><code>:%s+/oradata/apras/+/user01/apras1+g</code>:替换所有行的<code>/oradata/apras/</code>为<code>/user01/apras1/</code></p>
+</li>
+</ol>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/12/16/JavaScript-functional/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          JavaScript 函数式编程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/06/19/js-promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript Promise&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-vim-headbook" data-title="vim headbook" data-url="https://gnipbao.github.io/2017/12/16/vim-headbook/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
