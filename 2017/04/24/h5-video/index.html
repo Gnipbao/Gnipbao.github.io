@@ -5,19 +5,19 @@
   
   <title>视频H5 video标签最佳实践 - Gnipbao&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性12345678910111213141516&amp;lt;video  id=&quot;video&quot;   src=&quot;video.mp4&quot;   controls = &quot;true&quot;  poster=&quot;images.jpg&quot;">
+  <meta name="description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性">
 <meta name="keywords" content="视频播放 H5 video">
 <meta property="og:type" content="article">
 <meta property="og:title" content="视频H5 video标签最佳实践">
-<meta property="og:url" content="https://gnipbao.github.io/2017/12/16/h5-video/index.html">
+<meta property="og:url" content="https://gnipbao.github.io/2017/04/24/h5-video/index.html">
 <meta property="og:site_name" content="Gnipbao&#39;s blog">
-<meta property="og:description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性12345678910111213141516&amp;lt;video  id=&quot;video&quot;   src=&quot;video.mp4&quot;   controls = &quot;true&quot;  poster=&quot;images.jpg&quot;">
+<meta property="og:description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性">
 <meta property="og:locale" content="zh-cn">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/16514704/25273844/2894bc8e-26c0-11e7-87f3-2a051d1e92b9.jpg">
-<meta property="og:updated_time" content="2017-12-16T15:10:58.000Z">
+<meta property="og:updated_time" content="2017-12-16T15:47:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="视频H5 video标签最佳实践">
-<meta name="twitter:description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性12345678910111213141516&amp;lt;video  id=&quot;video&quot;   src=&quot;video.mp4&quot;   controls = &quot;true&quot;  poster=&quot;images.jpg&quot;">
+<meta name="twitter:description" content="随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。 video的属性">
 <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/16514704/25273844/2894bc8e-26c0-11e7-87f3-2a051d1e92b9.jpg">
   
     <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
@@ -79,8 +79,8 @@
       </header>
     
     <div class="article-meta">
-      <a href="/2017/12/16/h5-video/" class="article-date">
-  <time datetime="2017-12-16T15:10:00.000Z" itemprop="datePublished">2017-12-16</time>
+      <a href="/2017/04/24/h5-video/" class="article-date">
+  <time datetime="2017-04-24T15:10:00.000Z" itemprop="datePublished">2017-04-24</time>
 </a>
       
   <div class="article-category">
@@ -92,7 +92,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://cloud.githubusercontent.com/assets/16514704/25273844/2894bc8e-26c0-11e7-87f3-2a051d1e92b9.jpg" alt="cover_900x500"><br>随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。</p>
-<h3 id="video的属性"><a href="#video的属性" class="headerlink" title="video的属性"></a>video的属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"video"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"video.mp4"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">controls</span> = <span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">poster</span>=<span class="string">"images.jpg"</span> /*视频封面*/</span></span><br><span class="line"><span class="tag">  <span class="attr">preload</span>=<span class="string">"auto"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">webkit-playsinline</span>=<span class="string">"true"</span> /*这个属性是<span class="attr">ios</span> <span class="attr">10</span>中设置可以</span></span><br><span class="line"><span class="tag">                     让视频在小窗内播放，也就是不是全屏播放*/  </span></span><br><span class="line"><span class="tag">  <span class="attr">playsinline</span>=<span class="string">"true"</span>  /*<span class="attr">IOS</span>微信浏览器支持小窗内播放*/ </span></span><br><span class="line"><span class="tag">  <span class="attr">x-webkit-airplay</span>=<span class="string">"allow"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-type</span>=<span class="string">"h5"</span>  /*启用<span class="attr">H5</span>播放器,是<span class="attr">wechat</span>安卓版特性*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-fullscreen</span>=<span class="string">"true"</span> /*全屏设置，</span></span><br><span class="line"><span class="tag">                     设置为 <span class="attr">true</span> 是防止横屏*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-orientation</span>=<span class="string">"portraint"</span> //播放器支付的方向， <span class="attr">landscape</span>横屏，<span class="attr">portraint</span>竖屏，默认值为竖屏</span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"object-fit:fill"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="video的属性"><a href="#video的属性" class="headerlink" title="video的属性"></a>video的属性</h3><a id="more"></a>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"video"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"video.mp4"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">controls</span> = <span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">poster</span>=<span class="string">"images.jpg"</span> /*视频封面*/</span></span><br><span class="line"><span class="tag">  <span class="attr">preload</span>=<span class="string">"auto"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">webkit-playsinline</span>=<span class="string">"true"</span> /*这个属性是<span class="attr">ios</span> <span class="attr">10</span>中设置可以</span></span><br><span class="line"><span class="tag">                     让视频在小窗内播放，也就是不是全屏播放*/  </span></span><br><span class="line"><span class="tag">  <span class="attr">playsinline</span>=<span class="string">"true"</span>  /*<span class="attr">IOS</span>微信浏览器支持小窗内播放*/ </span></span><br><span class="line"><span class="tag">  <span class="attr">x-webkit-airplay</span>=<span class="string">"allow"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-type</span>=<span class="string">"h5"</span>  /*启用<span class="attr">H5</span>播放器,是<span class="attr">wechat</span>安卓版特性*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-fullscreen</span>=<span class="string">"true"</span> /*全屏设置，</span></span><br><span class="line"><span class="tag">                     设置为 <span class="attr">true</span> 是防止横屏*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-orientation</span>=<span class="string">"portraint"</span> //播放器支付的方向， <span class="attr">landscape</span>横屏，<span class="attr">portraint</span>竖屏，默认值为竖屏</span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"object-fit:fill"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <ul>
 <li>src: 视频的地址</li>
 <li>controls: 加上这个属性，Gecko 会提供用户控制，允许用户控制视频的播放，包括音量，跨帧，暂停/恢复播放。</li>
@@ -130,17 +131,17 @@
     
 <nav id="article-nav">
   
-    <a href="/2017/12/16/js-download-pdf/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/09/27/JavaScript-functional/" id="article-nav-newer" class="article-nav-link-wrap">
       <div class="article-nav-title"><span>&lt;</span>&nbsp;
         
-          如何使用JavaScript下载文件
+          JavaScript 函数式编程
         
       </div>
     </a>
   
   
-    <a href="/2017/12/16/JavaScript-functional/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JavaScript 函数式编程&nbsp;<span>&gt;</span></div>
+    <a href="/2016/06/19/js-promise/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">JavaScript Promise&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -151,7 +152,7 @@
 
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-h5-video" data-title="视频H5 video标签最佳实践" data-url="https://gnipbao.github.io/2017/12/16/h5-video/"></div>
+  <div class="ds-thread" data-thread-key="post-h5-video" data-title="视频H5 video标签最佳实践" data-url="https://gnipbao.github.io/2017/04/24/h5-video/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">

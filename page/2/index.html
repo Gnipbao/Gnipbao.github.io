@@ -61,7 +61,7 @@
   </div>
 </header>
     <section id="main" class="outer">
-      <article id="post-h5-video" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-vim-headbook" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -69,15 +69,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/16/h5-video/">视频H5 video标签最佳实践</a>
+      <a class="article-title" href="/2017/10/16/vim-headbook/">vim headbook</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2017/12/16/h5-video/" class="article-date">
-  <time datetime="2017-12-16T15:10:00.000Z" itemprop="datePublished">2017-12-16</time>
+      <a href="/2017/10/16/vim-headbook/" class="article-date">
+  <time datetime="2017-10-16T15:05:50.000Z" itemprop="datePublished">2017-10-16</time>
 </a>
       
   <div class="article-category">
@@ -88,37 +88,18 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://cloud.githubusercontent.com/assets/16514704/25273844/2894bc8e-26c0-11e7-87f3-2a051d1e92b9.jpg" alt="cover_900x500"><br>随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。</p>
-<h3 id="video的属性"><a href="#video的属性" class="headerlink" title="video的属性"></a>video的属性</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span></span></span><br><span class="line"><span class="tag">  <span class="attr">id</span>=<span class="string">"video"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">src</span>=<span class="string">"video.mp4"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">controls</span> = <span class="string">"true"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">poster</span>=<span class="string">"images.jpg"</span> /*视频封面*/</span></span><br><span class="line"><span class="tag">  <span class="attr">preload</span>=<span class="string">"auto"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">webkit-playsinline</span>=<span class="string">"true"</span> /*这个属性是<span class="attr">ios</span> <span class="attr">10</span>中设置可以</span></span><br><span class="line"><span class="tag">                     让视频在小窗内播放，也就是不是全屏播放*/  </span></span><br><span class="line"><span class="tag">  <span class="attr">playsinline</span>=<span class="string">"true"</span>  /*<span class="attr">IOS</span>微信浏览器支持小窗内播放*/ </span></span><br><span class="line"><span class="tag">  <span class="attr">x-webkit-airplay</span>=<span class="string">"allow"</span> </span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-type</span>=<span class="string">"h5"</span>  /*启用<span class="attr">H5</span>播放器,是<span class="attr">wechat</span>安卓版特性*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-player-fullscreen</span>=<span class="string">"true"</span> /*全屏设置，</span></span><br><span class="line"><span class="tag">                     设置为 <span class="attr">true</span> 是防止横屏*/</span></span><br><span class="line"><span class="tag">  <span class="attr">x5-video-orientation</span>=<span class="string">"portraint"</span> //播放器支付的方向， <span class="attr">landscape</span>横屏，<span class="attr">portraint</span>竖屏，默认值为竖屏</span></span><br><span class="line"><span class="tag">  <span class="attr">style</span>=<span class="string">"object-fit:fill"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>src: 视频的地址</li>
-<li>controls: 加上这个属性，Gecko 会提供用户控制，允许用户控制视频的播放，包括音量，跨帧，暂停/恢复播放。</li>
-<li>poster: 属性规定视频下载时显示的图像，或者在用户点击播放按钮前显示的图像。如果未设置该属性，则使用视频的第一帧来代替。</li>
-<li>preload: 属性规定在页面加载后载入视频。</li>
-<li>webkit-playsinline和playsinline: 视频播放时局域播放，不脱离文档流 。但是这个属性比较特别， 需要嵌入网页的APP比如WeChat中UIwebview 的allowsInlineMediaPlayback = YES webview.allowsInlineMediaPlayback = YES，才能生效。换句话说，如果APP不设置，你页面中加了这标签也无效，这也就是为什么安卓手机WeChat 播放视频总是全屏，因为APP不支持playsinline，而ISO的WeChat却支持。<br>这里就要补充下，如果是想做全屏直播或者全屏H5体验的用户，IOS需要设置删除 webkit-playsinline 标签，因为你设置 false 是不支持的 ，安卓则不需要，因为默认全屏。但这时候全屏是有播放控件的，无论你有没有设置control。 做直播的可能用得着播放控件，但是全屏H5是不需要的，那么去除全屏播放时候的控件，需要以下设置：同层播放</li>
-<li>x-webkit-airplay=”allow” : 这个属性应该是使此视频支持ios的AirPlay功能。使用AirPlay可以直接从使用iOS的设备上的不同位置播放视频、音乐还有照片文件，也就是说通过AirPlay功能可以实现影音文件的无线播放，当然前提是播放的终端设备也要支持相应的功能</li>
-<li>x5-video-player-type: 启用同层H5播放器，就是在视频全屏的时候，div可以呈现在视频层上，也是WeChat安卓版特有的属性。同层播放别名也叫做沉浸式播放，播放的时候看似全屏，但是已经除去了control和微信的导航栏，只留下”X”和”&lt;”两键。目前的同层播放器只在Android（包括微信）上生效，暂时不支持iOS。至于为什么同层播放只对安卓开放，是因为安卓不能像ISO一样局域播放，默认的全屏会使得一些界面操作被阻拦，如果是全屏H5还好，但是做直播的话，诸如弹幕那样的功能就无法实现了，所以这时候同层播放的概念就解决了这个问题。不过在测试的过程中发现，不同版本的IOS和安卓效果略有不同</li>
-<li>x5-video-orientation: 声明播放器支持的方向，可选值landscape 横屏, portraint竖屏。默认值portraint。无论是直播还是全屏H5一般都是竖屏播放，但是这个属性需要x5-video-player-type开启H5模式</li>
-<li>x5­-video­-player­-fullscreen:全屏设置。它又两个属性值，ture和false，true支持全屏播放，false不支持全屏播放。其实，IOS 微信浏览器是Chrome的内核，相关的属性都支持，也是为什么X5同层播放不支持的原因。安卓微信浏览器是X5内核，一些属性标签比如playsinline就不支持，所以始终全屏。</li>
-</ul>
-<h3 id="全屏处理"><a href="#全屏处理" class="headerlink" title="全屏处理"></a>全屏处理</h3><ul>
-<li><strong>ios</strong><br>ios加playsinline属性，之前只带webkit前缀的在ios10以后，会吊起系统自带播放器，两个属性都加上基本ios端都可以保证内敛到浏览器webview里面了。如果仍有个别版本的ios会吊起播放器，还可以引用一个库iphone-inline-video（具体用法很简单看它github，这里不介绍了，只需加js一句话，css加点），<a href="https://github.com/bfred-it/iphone-inline-video" target="_blank" rel="noopener">github地址</a>加上playsinline webkit-playsinline这两个属性和这个库基本可以保证ios端没有问题了（不过亲测，只加这两个属性不引入库好像也是ok的，至今没有在ios端微信没有出现问题，如果你要兼容uc或者qq的浏览器建议带上这个库）.</li>
-<li><strong>android</strong><br>x5-video-player-type=”h5”属性，腾讯x5内核系的android微信和手Q内置浏览器用的浏览器webview的内核，使用这个属性在微信中视频会有不同的表现，会呈现全屏状态，貌似播放控件剥去了，至少加了这个属性后视频上层可以有其他dom元素出现了（非腾讯白名单机制的一种处理措施）。</li>
-</ul>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"video"</span> <span class="attr">src</span>=<span class="string">"xx.mp4"</span> <span class="attr">playsinline</span> <span class="attr">webkit-playsinline</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="自动播放"><a href="#自动播放" class="headerlink" title="自动播放"></a>自动播放</h3><p>android始终不能自动播放，不多说。值得一提的是经测现在ios10后版本的safari和微信都不让视频自动播放了（顺带音频也不能自动播放了），但微信提供了一个事件WeixinJSBridgeReady，在微信嵌入webview全局的这个事件触发后，视频仍可以自动播放，这个应该是现在在ios端微信的视频自动播放的比较靠谱的方式，其他如手q或者其他浏览器，建议就引导用户出发触屏的行为操作出发比较好。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.addEventListener(<span class="string">"WeixinJSBridgeReady"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123; </span><br><span class="line">    video.play();</span><br><span class="line">    video.pause();</span><br><span class="line">&#125;, <span class="literal">false</span>)</span><br></pre></td></tr></table></figure></p>
-<h3 id="播放控制"><a href="#播放控制" class="headerlink" title="播放控制"></a>播放控制</h3><p>对于video或者audio等媒体元素，有一些方法，常用的有play(),pause();也有一些事件，如’loadstart’,’canplay’,’canplaythrough’,’ended’,’timeupdate’…..等等。<br>在移动端有一些坑需要注意，不要轻易使用媒体元素的除’ended’,’timeupdate’以外event事件，在不同的机子上可能有不同的情况产生，例如：ios下监听’canplay’和’canplaythrough’（是否已缓冲了足够的数据可以流畅播放）,当加载时是不会触发的，即使preload=”auto”也没用，但在pc的chrome调试器下和android下，是会在加载阶段就触发。ios需要播放后才会触发。总之就是现在的视频标准还不尽完善，有很多坑要注意，要使用前最好自己亲测一遍<br>就是当第一次播放视频的时候ios端，如果网络慢，视频从开始播到能展现画面会有短暂的黑屏（处理视频源数据的时间），为了避免这个黑屏，可以在视频上加个div浮层（可以一个假的视频第一帧），然后用timeupdate方法监听，视屏播放及有画面的时候再移除浮层</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">video.addEventListener(<span class="string">'timeupdate'</span>,<span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="comment">//当视频的currentTime大于0.1时表示黑屏时间已过，已有视频画面，可以移除浮层（.pagestart的div元素）</span></span><br><span class="line">    <span class="keyword">if</span> ( !video.isPlayed &amp;&amp; <span class="keyword">this</span>.currentTime&gt;<span class="number">0.1</span> )&#123;</span><br><span class="line">        $(<span class="string">'.pagestart'</span>).fadeOut(<span class="number">500</span>);</span><br><span class="line">        video.isPlayed = !<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
-<h3 id="隐藏播放控件"><a href="#隐藏播放控件" class="headerlink" title="隐藏播放控件"></a>隐藏播放控件</h3><p>据说腾讯的android团队的x5内核团队放开了视频播放的限制，视频不一定调用它们那个备受诟病的视频播放器了，x5-video-player-type=”h5”属性这个属性好像就有点那个意思，虽然体验还是有点…（导航栏也会清理）但至少播放器控件没有了，上层可以浮div或者其他元素了，这个还是值得一提。还有一点值得说的是，带播放器控件的隐藏.<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"videobox"</span> <span class="attr">ontouchmove</span>=<span class="string">"return false;"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">video</span> <span class="attr">id</span>=<span class="string">"mainvideo"</span> <span class="attr">src</span>=<span class="string">"test.mp4"</span> <span class="attr">x5-video-player-type</span>=<span class="string">"h5"</span> <span class="attr">playsinline</span> <span class="attr">webkit-playsinline</span>&gt;</span><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
-<p>比如这个videobox在android下隐藏，只用display：none貌似还是不行的，但加个z-index:-1，设置成-1就可以达到隐藏播放器控件的目的了。</p>
-<h3 id="参考文章"><a href="#参考文章" class="headerlink" title="参考文章"></a>参考文章</h3><p><a href="https://segmentfault.com/a/1190000006857675" target="_blank" rel="noopener">html5–移动端视频video的android兼容，去除播放控件、全屏等</a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTML/Element/video" target="_blank" rel="noopener">MDN-Video</a><br><a href="https://aotu.io/notes/2017/01/11/mobile-video/" target="_blank" rel="noopener">视频H5のVideo标签在微信里的坑和技巧</a><br><a href="http://www.xuanfengge.com/html5-video-play.html" target="_blank" rel="noopener">移动端HTML5<video>视频播放优化实践</video></a><br><a href="http://www.jianshu.com/p/9dec20414bb8" target="_blank" rel="noopener">微信端视频播放问题</a></p>
-
+        <p><img src="https://user-images.githubusercontent.com/16514704/31593352-c87d9cfc-b1f3-11e7-914b-51ffebccf59c.jpeg" alt="vim"><br>vim分为四种模式：<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/16/vim-headbook/#more">Read More</a>
+          </p>
+        
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频播放-H5-video/">视频播放 H5 video</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
 
     </footer>
   
@@ -136,15 +117,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/16/JavaScript-functional/">JavaScript 函数式编程</a>
+      <a class="article-title" href="/2017/09/27/JavaScript-functional/">JavaScript 函数式编程</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2017/12/16/JavaScript-functional/" class="article-date">
-  <time datetime="2017-12-16T15:08:09.000Z" itemprop="datePublished">2017-12-16</time>
+      <a href="/2017/09/27/JavaScript-functional/" class="article-date">
+  <time datetime="2017-09-27T15:08:09.000Z" itemprop="datePublished">2017-09-27</time>
 </a>
       
   <div class="article-category">
@@ -156,125 +137,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p><img src="https://user-images.githubusercontent.com/16514704/30242371-dceba154-95c7-11e7-84c6-ec5936605a84.png" alt="fp1"></p>
-<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><ul>
+<ul>
 <li>函数式编程概念<ul>
 <li>编程范式</li>
 <li><em>纯函数</em> (Purity)</li>
 </ul>
 </li>
-<li>高阶函数</li>
-<li>由函数构建函数<ul>
-<li><em>函数组合</em> (Function Composition)</li>
-<li><em>柯里化</em>(Currying)</li>
-<li><em>部分应用</em> (Partial Application)</li>
-</ul>
-</li>
-<li>递归<ul>
-<li>相互递归</li>
-<li><em>尾递归</em>(Tail Calls)</li>
-<li><em>蹦床原理</em>(Trampolines)</li>
-</ul>
-</li>
-<li>流行的类库</li>
-</ul>
-<h2 id="什么是函数式编程"><a href="#什么是函数式编程" class="headerlink" title="什么是函数式编程"></a>什么是函数式编程</h2><ul>
-<li><a href="https://zh.wikipedia.org/wiki/%E7%BC%96%E7%A8%8B%E8%8C%83%E5%9E%8B" target="_blank" rel="noopener">编程范式</a> </li>
-<li>面向数学的抽象(面向<strong>函数</strong>的编程)</li>
-<li>函数作为<strong>一等公民</strong>(可以像任何其他数据类型一样对待)<h2 id="Functional-Programming-Hurts"><a href="#Functional-Programming-Hurts" class="headerlink" title="Functional Programming Hurts?"></a>Functional Programming Hurts?</h2><img src="https://user-images.githubusercontent.com/16514704/30239965-a87190c4-9599-11e7-8ffe-d7b4a36ec2f6.png" alt="fp0"><h2 id="纯函数"><a href="#纯函数" class="headerlink" title="纯函数"></a><em>纯函数</em></h2></li>
-<li>此函数在相同的输入值时，总是产生相同的输出。函数的输出和当前运行环境的上下文状态无关。</li>
-<li>此函数运行过程不影响运行环境，比如不会触发事件、更改环境中的对象、终端输出值等。</li>
-<li>相同的输入，永远会得到相同的输出，而且没有任何可观察的副作用</li>
-</ul>
-<h2 id="函数式编程的好处"><a href="#函数式编程的好处" class="headerlink" title="函数式编程的好处"></a>函数式编程的好处</h2><ul>
-<li>引用透明(Referential transparency)<ul>
-<li>一个表达式能够被它的值替代而不改变程序的行为成为引用透明。</li>
-</ul>
-</li>
-<li>No Side Effect(基于状态不可变性)</li>
-<li>易于测试(上下文无关)</li>
-<li>可并行计算(时序无关,即不依赖外部的状态也不修改外部的状态，函数调用的结果不依赖调用的时间和位置)</li>
-<li>bug自限性(问题不会扩散)</li>
-</ul>
-<h2 id="高价函数-HOF"><a href="#高价函数-HOF" class="headerlink" title="高价函数(HOF)"></a>高价函数(HOF)</h2><ul>
-<li>定义<ul>
-<li>以一个函数作为参数</li>
-<li>以一个函数作为返回值</li>
-</ul>
-</li>
-<li>应用<ul>
-<li>ajax异步回调</li>
-<li>Array的一些方法sort, map,filter,reduce等</li>
-<li>惰性加载函数,函数节流,实现AOP等</li>
-</ul>
-</li>
-</ul>
-<h3 id="惰性加载函数"><a href="#惰性加载函数" class="headerlink" title="惰性加载函数"></a>惰性加载函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> addEvent = <span class="function"><span class="keyword">function</span>(<span class="params">elem, type, handler</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">window</span>.addEventListener) &#123;</span><br><span class="line">        addEvent = <span class="function"><span class="keyword">function</span>(<span class="params">elem, type, handler</span>) </span>&#123;</span><br><span class="line">            elem.addEventListener(type, handler, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="built_in">window</span>.attachEvent) &#123;</span><br><span class="line">        addEvent = <span class="function"><span class="keyword">function</span>(<span class="params">elem, type, handler</span>) </span>&#123;</span><br><span class="line">            elem.attachEvent(<span class="string">'on'</span> + type, handler);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    addEvent(elem, type, handler);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="string">``</span><span class="string">`    </span></span><br><span class="line"><span class="string">### once</span></span><br><span class="line"><span class="string">&lt;a class="jsbin-embed" href="//code.h5jun.com/zeco/1/embed?js,console,output"&gt;JS Bin on jsbin.com&lt;/a&gt;&lt;script src="https:////code.h5jun.com/js/embed.min.js?3.40.2"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### throttle(截流函数)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&lt;a class="jsbin-embed" href="//code.h5jun.com/xixo/1/embed?js,console,output"&gt;JS Bin on jsbin.com&lt;/a&gt;&lt;script src="https:////code.h5jun.com/js/embed.min.js?3.40.2"&gt;&lt;/script&gt;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### 函数组合(compose)</span></span><br><span class="line"><span class="string">接收多个函数作为参数，从右到左，一个函数的输入为另一个函数的输出。</span></span><br><span class="line"><span class="string">![compose](https://user-images.githubusercontent.com/16514704/30249905-3dc48152-9678-11e7-807e-b30a5419cacf.png)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">### compose</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">`</span><span class="string">``</span>javascript</span><br><span class="line"><span class="keyword">const</span> compose = <span class="function">(<span class="params">f, g</span>) =&gt;</span> (a) =&gt; f(g(a))<span class="comment">//结合律</span></span><br><span class="line"><span class="comment">//f 和 g 都是函数，a 是在它们之间通过“管道”传输的值</span></span><br><span class="line"><span class="keyword">const</span> floorAndToString = compose(<span class="function">(<span class="params">val</span>) =&gt;</span> val.toString(), <span class="built_in">Math</span>.floor) <span class="comment">// 使用</span></span><br><span class="line">floorAndToString(<span class="number">12.12</span>)   <span class="comment">//=&gt; '12'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reducer</span>(<span class="params">state, action</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> action(state);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">reverse</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.split(<span class="string">''</span>).reverse().join(<span class="string">''</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">upperCase</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str.toUpperCase();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> str = [reverse, upperCase].reduce(reducer, <span class="string">"hello world!"</span>);<span class="comment">//=&gt;!DLROW OLLEH</span></span><br></pre></td></tr></table></figure>
-<h3 id="柯里化"><a href="#柯里化" class="headerlink" title="柯里化"></a>柯里化</h3><p>将一个多元函数转变为一元函数的过程。 每当函数被调用时，它仅仅接收一个参数并且返回带有一个参数的函数，直到传递完所有的参数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//柯里化函数逐渐返回消耗参数的函数，直到所有参数耗尽</span></span><br><span class="line"><span class="keyword">const</span> sum = <span class="function">(<span class="params">a, b</span>) =&gt;</span> a + b</span><br><span class="line"><span class="keyword">const</span> curriedSum = <span class="function">(<span class="params">a</span>) =&gt;</span> (b) =&gt; a + b</span><br><span class="line">curriedSum(<span class="number">3</span>)(<span class="number">4</span>)         <span class="comment">// 7</span></span><br><span class="line"><span class="keyword">const</span> add2 = curriedSum(<span class="number">2</span>)</span><br><span class="line">add2(<span class="number">10</span>)     <span class="comment">// 12</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="自动柯里化"><a href="#自动柯里化" class="headerlink" title="自动柯里化"></a>自动柯里化</h3><p>lodash，understore 和 ramda 有 curry 函数可以自动完成柯里化。</p>
-<p><a class="jsbin-embed" href="//code.h5jun.com/zure/embed?js,console,output">JS Bin on jsbin.com</a><script src="https:////code.h5jun.com/js/embed.min.js?3.40.2"></script></p>
-<h3 id="curry"><a href="#curry" class="headerlink" title="curry"></a>curry</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">arg</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> fn(arg)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 接受一个函数</span></span><br><span class="line"><span class="comment">//返回一个只接受一个参数的函数</span></span><br><span class="line"><span class="comment">//似乎是一个没用的函数?</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">11</span>);<span class="comment">//=&gt;11</span></span><br><span class="line"><span class="built_in">parseInt</span>(<span class="number">11</span>,<span class="number">2</span>);<span class="comment">//=&gt;3</span></span><br><span class="line">[<span class="string">'11'</span>,<span class="string">'11'</span>,<span class="string">'11'</span>,<span class="string">'11'</span>].map(<span class="built_in">parseInt</span>);<span class="comment">//=&gt;[11,NaN,3,4]</span></span><br><span class="line">[<span class="string">'11'</span>,<span class="string">'11'</span>,<span class="string">'11'</span>,<span class="string">'11'</span>].map(curry(<span class="built_in">parseInt</span>));<span class="comment">//=&gt;[11,11,11,11]</span></span><br><span class="line"><span class="comment">//显示控制接受固定以及可选的参数的函数行为</span></span><br></pre></td></tr></table></figure>
-<h3 id="curryN"><a href="#curryN" class="headerlink" title="curryN"></a>curryN</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry2</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">secondArg</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">firstArg</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> fn(firstArg, secondArg)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curry3</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">last</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">middle</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="function"><span class="keyword">function</span>(<span class="params">first</span>)</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> fn(first, middle, last);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">curryN</span>(<span class="params">fn</span>)</span>&#123;</span><br><span class="line">    <span class="comment">//...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="部分应用-Partial-Application"><a href="#部分应用-Partial-Application" class="headerlink" title="部分应用(Partial Application)"></a>部分应用(Partial Application)</h3><p>部分应用也叫偏函数应用是指使用一个函数并将其应用一个或多个参数，但不是全部参数，在这个过程中创建一个新函数。</p>
-<pre><code class="javascript">
-    //partical application 
-    function apply(fn /* partial arguments... */ ) {
-    var args = [].slice.call(arguments, 1);
-    return function () {
-        var _args = [].slice.call(arguments);
-        return fn.apply(this, args.concat(_args));
-    }
-    }
-    //es6
-    function apply(fn, ...args) {
-    return (..._args) => {
-        return fn(...args, ..._args);
-    };
-    }
-</code></pre>
-
-
-<h2 id="Partial"><a href="#Partial" class="headerlink" title="Partial"></a>Partial</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建偏函数，固定一些参数</span></span><br><span class="line"><span class="keyword">const</span> partical = <span class="function">(<span class="params">f, ...args</span>) =&gt;</span></span><br><span class="line"><span class="comment">// 返回一个带有剩余参数的函数</span></span><br><span class="line">(...moreArgs) =&gt;</span><br><span class="line">    <span class="comment">// 调用原始函数</span></span><br><span class="line">    f(...args, ...moreArgs)</span><br><span class="line"><span class="keyword">const</span> add3 = <span class="function">(<span class="params">a, b, c</span>) =&gt;</span> a + b + c</span><br><span class="line"><span class="comment">// (...args) =&gt; add3(2, 3, ...args)</span></span><br><span class="line"><span class="comment">// (c) =&gt; 2 + 3 + c</span></span><br><span class="line"><span class="keyword">const</span> fivePlus = partical(add3, <span class="number">2</span>, <span class="number">3</span>)</span><br><span class="line"></span><br><span class="line">fivePlus(<span class="number">4</span>)  <span class="comment">// 9</span></span><br></pre></td></tr></table></figure>
-<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p><img src="https://user-images.githubusercontent.com/16514704/30263004-e181f4c2-9705-11e7-8b56-03b8af5bab2a.png" alt="fp3"></p>
-<h3 id="递归"><a href="#递归" class="headerlink" title="递归"></a>递归</h3><ul>
-<li>如果一个函数在内部调用自身本身，这个函数就是递归函数</li>
-<li>递归函数的优点是定义简单，逻辑清晰。理论上，所有的递归函数都可以写成循环的方式，但循环的逻辑不如递归清晰。</li>
-<li>使用递归函数需要注意防止栈溢出。在计算机中，函数调用是通过栈（stack）这种数据结构实现的，每当进入一个函数调用，栈就会加一层栈帧，每当函数返回，栈就会减一层栈帧。由于栈的大小不是无限的，所以，递归调用的次数过多，会导致栈溢出。</li>
-</ul>
-<h3 id="相互递归"><a href="#相互递归" class="headerlink" title="相互递归"></a>相互递归</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isOdd</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">	<span class="keyword">return</span> isEven( <span class="built_in">Math</span>.abs( v ) - <span class="number">1</span> );</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isEven</span>(<span class="params">v</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (v === <span class="number">0</span>) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="keyword">return</span> isOdd( <span class="built_in">Math</span>.abs( v ) - <span class="number">1</span> );</span><br><span class="line">&#125;</span><br><span class="line">isOdd( <span class="number">33333</span> );	<span class="comment">// RangeError: Maximum call stack size exceeded</span></span><br></pre></td></tr></table></figure>
-<h3 id="尾调用-Tail-Calls"><a href="#尾调用-Tail-Calls" class="headerlink" title="尾调用(Tail Calls)"></a>尾调用(Tail Calls)</h3><p>指某个函数的最后一步是调用另一个函数</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// case1 不属于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">let</span> y = g(x);</span><br><span class="line">  <span class="keyword">return</span> y;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// case2 不属于</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params">x</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> g(x) + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="尾递归"><a href="#尾递归" class="headerlink" title="尾递归"></a>尾递归</h3><hr>
-<ul>
-<li>尾调用自身，就称为尾递归。</li>
-<li>解决递归调用栈溢出的方法是通过尾递归优化(技术上)</li>
-<li>在函数返回的时候，调用自身本身，并且，return语句不能包含表达式。这样，编译器或者解释器就可以把尾递归做优化，使递归本身无论调用多少次，都只占用一个栈帧，不会出现栈溢出的情况。</li>
-<li>ES6标准规定了 尾调用不会创建额外的调用帧。在严格模式下 尾调用不会造成调用栈溢出。</li>
-<li>递归本质上是一种循环操作。纯粹的函数式编程语言没有循环操作命令，所有的循环都用递归实现，这就是为什么尾递归对这些语言极其重要.</li>
-</ul>
-<h3 id="求自然数阶乘"><a href="#求自然数阶乘" class="headerlink" title="求自然数阶乘"></a>求自然数阶乘</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">return</span> n * factorial(n - <span class="number">1</span>);</span><br><span class="line">&#125;<span class="comment">//复杂度 O(n) </span></span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>) <span class="comment">// 120</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//尾递归</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">n, total</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (n === <span class="number">1</span>) <span class="keyword">return</span> total;</span><br><span class="line">  <span class="keyword">return</span> factorial(n - <span class="number">1</span>, n * total);</span><br><span class="line">&#125;<span class="comment">//复杂度 O(1) </span></span><br><span class="line"></span><br><span class="line">factorial(<span class="number">5</span>, <span class="number">1</span>) <span class="comment">// 120</span></span><br></pre></td></tr></table></figure>
-<h3 id="求斐波那契数值"><a href="#求斐波那契数值" class="headerlink" title="求斐波那契数值"></a>求斐波那契数值</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> n &lt;= <span class="number">1</span> ? <span class="number">1</span> : fibonacci(n - <span class="number">1</span>) + fibonacci(n - <span class="number">2</span>);</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">40</span>); <span class="comment">// 165580141</span></span><br><span class="line"><span class="comment">//经过尾调优化后</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span> (<span class="params">n, ac1, ac2</span>) </span>&#123;</span><br><span class="line">    (ac1 = ac1 || <span class="number">1</span>), (ac2 = ac2 || <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> n &lt;= <span class="number">1</span> ? ac2 :fibonacci(n - <span class="number">1</span>, ac2, ac1 + ac2);</span><br><span class="line">&#125;</span><br><span class="line">fibonacci(<span class="number">100</span>); <span class="comment">// 573147844013817200000</span></span><br><span class="line">fibonacci(<span class="number">1000</span>); <span class="comment">// 7.0330367711422765e+208</span></span><br><span class="line">fibonacci(<span class="number">10000</span>); <span class="comment">// Infinity</span></span><br></pre></td></tr></table></figure>
-<h3 id="递归优化的实现"><a href="#递归优化的实现" class="headerlink" title="递归优化的实现"></a>递归优化的实现</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//转化成while循环</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> fact = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (n &gt; <span class="number">1</span>) &#123;</span><br><span class="line">        fact *= n--;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fact;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span> (<span class="params">n</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ac1, ac2, tmp,</span><br><span class="line">        i = ac2 = ac1 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(n &gt; i++) &#123;</span><br><span class="line">        (tmp = ac2),</span><br><span class="line">        (ac2 = ac1 + ac2),</span><br><span class="line">        (ac1 = tmp);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ac2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="蹦床函数"><a href="#蹦床函数" class="headerlink" title="蹦床函数"></a>蹦床函数</h3><p>顾名思义，蹦床函数就是随着递归执行的开始和结束，调用栈会出现入栈、出栈效果，就像是在弹蹦床。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//utility</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trampoline</span>(<span class="params">fun <span class="regexp">/*, args */</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> result = fun.apply(fun, _.rest(<span class="built_in">arguments</span>));</span><br><span class="line">  <span class="keyword">while</span> (_.isFunction(result)) &#123;</span><br><span class="line">    result = result();</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="trampoline"><a href="#trampoline" class="headerlink" title="trampoline"></a>trampoline</h3><p><a class="jsbin-embed" href="//code.h5jun.com/qoko/embed?js,console,output">JS Bin on jsbin.com</a><script src="https:////code.h5jun.com/js/embed.min.js?3.40.2"></script></p>
-<h2 id="一些资料"><a href="#一些资料" class="headerlink" title="一些资料"></a>一些资料</h2><ul>
-<li>教程<ul>
-<li><a href="https://github.com/getify/Functional-Light-JS" target="_blank" rel="noopener">https://github.com/getify/Functional-Light-JS</a></li>
-<li><a href="https://github.com/MostlyAdequate/mostly-adequate-guide" target="_blank" rel="noopener">https://github.com/MostlyAdequate/mostly-adequate-guide</a></li>
-<li><a href="https://github.com/hemanth/functional-programming-jargon" target="_blank" rel="noopener">https://github.com/hemanth/functional-programming-jargon</a></li>
-</ul>
-</li>
-<li>框架和库<ul>
-<li><a href="http://ramdajs.com/" target="_blank" rel="noopener">http://ramdajs.com/</a></li>
-<li><a href="https://facebook.github.io/immutable-js/" target="_blank" rel="noopener">https://facebook.github.io/immutable-js/</a></li>
-<li><a href="https://lodash.com/" target="_blank" rel="noopener">https://lodash.com/</a></li>
-<li><a href="http://underscorejs.org/" target="_blank" rel="noopener">http://underscorejs.org/</a></li>
-<li><a href="http://reactivex.io/rxjs/" target="_blank" rel="noopener">http://reactivex.io/rxjs/</a></li>
-<li><a href="http://redux.js.org/" target="_blank" rel="noopener">http://redux.js.org/</a></li>
-</ul>
-</li>
-</ul>
-
+<li>高阶函数
+        
+          <p class="article-more-link">
+            <a href="/2017/09/27/JavaScript-functional/#more">Read More</a>
+          </p>
+        
       
     </div>
   
@@ -290,7 +164,7 @@
 
 
     
-      <article id="post-vim-headbook" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-h5-video" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -298,15 +172,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/16/vim-headbook/">vim headbook</a>
+      <a class="article-title" href="/2017/04/24/h5-video/">视频H5 video标签最佳实践</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2017/12/16/vim-headbook/" class="article-date">
-  <time datetime="2017-12-16T15:05:50.000Z" itemprop="datePublished">2017-12-16</time>
+      <a href="/2017/04/24/h5-video/" class="article-date">
+  <time datetime="2017-04-24T15:10:00.000Z" itemprop="datePublished">2017-04-24</time>
 </a>
       
   <div class="article-category">
@@ -317,507 +191,19 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <p><img src="https://user-images.githubusercontent.com/16514704/31593352-c87d9cfc-b1f3-11e7-914b-51ffebccf59c.jpeg" alt="vim"><br>vim分为四种模式：</p>
-<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><ul>
-<li>普通模式（<code>normal mode</code>）</li>
-<li>插入模式（<code>insert mode</code>）</li>
-<li>可视模式（<code>visual mode</code>）</li>
-<li>命令模式（<code>excute mode</code>）</li>
-</ul>
-<p><strong>下面整理了常用的快捷键和记忆方法（结合英文的记忆方法法）</strong></p>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
-<li><a href="#1">普通模式</a><ul>
-<li><a href="#1.1">光标移动</a></li>
-<li><a href="#1.2">查找</a></li>
-<li><a href="#1.3">剪切复制粘贴</a></li>
-<li><a href="#1.4">滚屏</a></li>
-</ul>
-</li>
-<li><a href="#2">插入模式</a></li>
-<li><a href="#3">可视模式</a></li>
-<li><a href="#4">命令模式</a><ul>
-<li><a href="#4.1">替换命令</a></li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="普通模式"><a href="#普通模式" class="headerlink" title="普通模式"></a><a name="1">普通模式</a></h2><h3 id="光标移动"><a href="#光标移动" class="headerlink" title="光标移动"></a><a name="1.1">光标移动</a></h3><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>h</code> <code>j</code> <code>k</code> <code>l</code></td>
-<td>向左/下/上/右移动</td>
-<td>←↑↓→</td>
-</tr>
-<tr>
-<td><code>w</code></td>
-<td>移动到下个单词开头</td>
-<td>word</td>
-</tr>
-<tr>
-<td><code>W</code></td>
-<td>移动到下个单词开头(包含标点)</td>
-<td>Word</td>
-</tr>
-<tr>
-<td><code>e</code></td>
-<td>移动到下个单词结尾</td>
-<td>end</td>
-</tr>
-<tr>
-<td><code>E</code></td>
-<td>移动到下个单词结尾(单词含标点)</td>
-<td>End</td>
-</tr>
-<tr>
-<td><code>b</code></td>
-<td>移动到上个单词开头</td>
-<td>back</td>
-</tr>
-<tr>
-<td><code>B</code></td>
-<td>移动到上个单词结尾(单词含标点)</td>
-<td>Back</td>
-</tr>
-<tr>
-<td><code>0</code></td>
-<td>移动到行首</td>
-<td>hard ⇤</td>
-</tr>
-<tr>
-<td><code>^</code></td>
-<td>移动到行首的非空白符</td>
-<td>soft ⇤</td>
-</tr>
-<tr>
-<td><code>$</code></td>
-<td>移动到行尾</td>
-<td>⇥</td>
-</tr>
-<tr>
-<td><code>H</code></td>
-<td>当前屏幕的第一行</td>
-<td>High</td>
-</tr>
-<tr>
-<td><code>M</code></td>
-<td>当前屏幕的中间</td>
-<td>Middle</td>
-</tr>
-<tr>
-<td><code>L</code></td>
-<td>当前页的的最后一行</td>
-<td>Low</td>
-</tr>
-<tr>
-<td><code>gg</code></td>
-<td>移动到文件第一行</td>
-<td>goto line1</td>
-</tr>
-<tr>
-<td><code>G</code></td>
-<td>移动到文件最后一行</td>
-<td>Goto EOF</td>
-</tr>
-<tr>
-<td><code>5G</code></td>
-<td>移动到第五行</td>
-<td>-Goto line5</td>
-</tr>
-</tbody>
-</table>
-<h3 id="查找"><a href="#查找" class="headerlink" title="查找"></a><a name="1.2">查找</a></h3><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>f{char}</code>/<code>F{char}</code></td>
-<td>在行内向下/向上查找字符{char} （光标在字符上）</td>
-<td>find/Find</td>
-</tr>
-<tr>
-<td><code>t{char}</code>/<code>T{char}</code></td>
-<td>在行内向下/向上查找字符{char}（光标在字符前面）</td>
-<td>till /Till</td>
-</tr>
-<tr>
-<td><code>;</code>/<code>,</code></td>
-<td>跟<code>f</code>/<code>F</code>/<code>t</code>/<code>T</code>结合使用，，跟查找顺序相同/相反的下一个匹配项</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>/pattern</code></td>
-<td>文档向下查找匹配项</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>?pattern</code></td>
-<td>文档内向上查匹配项</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>n</code>/<code>N</code></td>
-<td>跟<code>/</code>和<code>?</code>结合使用，跟查找顺序相同/相反的下一个匹配项</td>
-<td>next/Next</td>
-</tr>
-</tbody>
-</table>
-<h3 id="剪切-复制-粘贴"><a href="#剪切-复制-粘贴" class="headerlink" title="剪切, 复制, 粘贴"></a><a name="1.3">剪切, 复制, 粘贴</a></h3><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>yy</code></td>
-<td>复制当前行</td>
-<td>yank</td>
-</tr>
-<tr>
-<td><code>5yy</code></td>
-<td>复制 5 行</td>
-<td>5次yank</td>
-</tr>
-<tr>
-<td><code>yw</code></td>
-<td>当光标在单词首字母处，复制当前单词</td>
-<td>yank word</td>
-</tr>
-<tr>
-<td><code>yaw</code></td>
-<td>当光标在单词内部，复制当前单词（单词后面空格也复制）</td>
-<td>yank around word</td>
-</tr>
-<tr>
-<td><code>yiw</code></td>
-<td>当光标在单词内部，复制当前单词（单词后面空格不复制）</td>
-<td>yank inside word</td>
-</tr>
-<tr>
-<td><code>p</code></td>
-<td>在光标后粘贴</td>
-<td>paste</td>
-</tr>
-<tr>
-<td><code>P</code></td>
-<td>在光标前粘贴</td>
-<td>Paste</td>
-</tr>
-<tr>
-<td><code>dd</code></td>
-<td>剪切当前行</td>
-<td>delete</td>
-</tr>
-<tr>
-<td><code>2dd</code></td>
-<td>剪切 2 行</td>
-<td>2次delete</td>
-</tr>
-<tr>
-<td><code>dw</code>/<code>dW</code></td>
-<td>光标在单词首字母处，剪切当前单词</td>
-<td>delete word</td>
-</tr>
-<tr>
-<td><code>daw</code>/<code>daW</code></td>
-<td>剪切当前单词(后面有空格也剪切)</td>
-<td>delete around word</td>
-</tr>
-<tr>
-<td><code>diw</code>/<code>diW</code></td>
-<td>剪切当前单词(后面有空格也剪切)</td>
-<td>delete inside word</td>
-</tr>
-<tr>
-<td><code>D</code></td>
-<td>剪切, 从光标位置到行末</td>
-<td>Delete ⇥</td>
-</tr>
-<tr>
-<td><code>x</code></td>
-<td>向后剪切掉一个字符，不用进入插入模式</td>
-<td>向后x掉</td>
-</tr>
-<tr>
-<td><code>X</code></td>
-<td>向前剪切掉一个字符，不用进入插入模式</td>
-<td>向前X掉</td>
-</tr>
-<tr>
-<td><code>J</code></td>
-<td>去掉行尾的换行符，即连接两行</td>
-<td>Join lines</td>
-</tr>
-<tr>
-<td><code>u</code></td>
-<td>撤销</td>
-<td>undo</td>
-</tr>
-<tr>
-<td><code>&lt;ctrl-r&gt;</code></td>
-<td>重做</td>
-<td>redo</td>
-</tr>
-</tbody>
-</table>
-<h3 id="滚屏"><a href="#滚屏" class="headerlink" title="滚屏"></a><a name="1.4">滚屏</a></h3><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>&lt;Ctrl + b&gt;</code></td>
-<td>向后滚动一屏</td>
-<td>backwards</td>
-</tr>
-<tr>
-<td><code>&lt;Ctrl + f&gt;</code></td>
-<td>向前滚动一屏</td>
-<td>forwards</td>
-</tr>
-<tr>
-<td><code>&lt;Ctrl + d&gt;</code></td>
-<td>向后滚动半屏</td>
-<td>down</td>
-</tr>
-<tr>
-<td><code>&lt;Ctrl + u&gt;</code></td>
-<td>向前滚动半屏</td>
-<td>up</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="插入模式"><a href="#插入模式" class="headerlink" title="插入模式"></a><a name="2">插入模式</a></h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>i</code></td>
-<td>从光标前开始插入字符</td>
-<td>insert</td>
-</tr>
-<tr>
-<td><code>I</code></td>
-<td>从行首开始插入字符</td>
-<td>Insert</td>
-</tr>
-<tr>
-<td><code>a</code></td>
-<td>从光标后开始插入字符</td>
-<td>append</td>
-</tr>
-<tr>
-<td><code>A</code></td>
-<td>从行尾开始插入字符</td>
-<td>Append</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>在当前行之下另起一行, 开始插入字符</td>
-<td>open a new line</td>
-</tr>
-<tr>
-<td><code>O</code></td>
-<td>在当前行之上另起一行, 开始插入字符</td>
-<td>Open a new line</td>
-</tr>
-<tr>
-<td><code>s</code></td>
-<td>删除当前字符，然后进入插入模式(替换)</td>
-<td>substitute</td>
-</tr>
-<tr>
-<td><code>S</code></td>
-<td>删除当前行，然后进入插入模式（替换）</td>
-<td>substitute</td>
-</tr>
-<tr>
-<td><code>r</code></td>
-<td>替换当前字符（其实是属于replace模式）</td>
-<td>replace</td>
-</tr>
-<tr>
-<td><code>R</code></td>
-<td>替换连续的几个字符（属于replace模式）</td>
-<td>Replace</td>
-</tr>
-<tr>
-<td><code>cw</code>/<code>cW</code></td>
-<td>删掉一个单词/带标点的单词，然后进入插入模式</td>
-<td>change</td>
-</tr>
-<tr>
-<td><code>C</code></td>
-<td>删除光标所在行的光标后面的内容</td>
-<td>Change</td>
-</tr>
-<tr>
-<td><code>&lt;Esc&gt;</code></td>
-<td>退出插入模式</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="可视模式"><a href="#可视模式" class="headerlink" title="可视模式"></a><a name="3">可视模式</a></h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>v</code></td>
-<td>选择字符</td>
-<td>visual</td>
-</tr>
-<tr>
-<td><code>V</code></td>
-<td>选择行</td>
-<td>Visual line</td>
-</tr>
-<tr>
-<td><code>&lt;ctrl-v&gt;</code></td>
-<td>选择块</td>
-<td>visual block</td>
-</tr>
-<tr>
-<td><code>gv</code></td>
-<td>重复上次的高亮区域</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>o</code></td>
-<td>结合可视模式用的<code>o</code>，回到活动端点</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>vw</code></td>
-<td>光标在单词首字母处，选择单词</td>
-<td>visual word</td>
-</tr>
-<tr>
-<td><code>vaw</code></td>
-<td>选择单词（包括单词后面的空格）</td>
-<td>visual around world</td>
-</tr>
-<tr>
-<td><code>viw</code></td>
-<td>选择单词（不包括单词后面的空格）</td>
-<td>visual inside world</td>
-</tr>
-<tr>
-<td><code>vit</code></td>
-<td>选择标签内的内容（html）</td>
-<td>visual inside tags</td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a><a name="4">命令模式</a></h2><table>
-<thead>
-<tr>
-<th>按键</th>
-<th>效果</th>
-<th>记忆方法</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>:w</code></td>
-<td>保存、写入</td>
-<td>write</td>
-</tr>
-<tr>
-<td><code>:x</code>/<code>:wq</code></td>
-<td>保存并退出</td>
-<td>write quit</td>
-</tr>
-<tr>
-<td><code>:q!</code></td>
-<td>直接退出</td>
-<td>quit</td>
-</tr>
-<tr>
-<td><code>r filename</code></td>
-<td>读文件内容到当前文件中</td>
-<td>read filename</td>
-</tr>
-<tr>
-<td><code>w filename</code></td>
-<td>将当前文件内容另存到另一个文件</td>
-<td>write filename</td>
-</tr>
-<tr>
-<td><code>!command</code></td>
-<td>执行命令</td>
-<td>!command</td>
-</tr>
-<tr>
-<td><code>r!command</code></td>
-<td>读入命令的输出</td>
-<td>read !command</td>
-</tr>
-<tr>
-<td><code>:set number</code></td>
-<td>设置行符</td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>:syntax on</code>/<code>:syntax off</code></td>
-<td>开启/关闭代码高亮</td>
-<td>-</td>
-</tr>
-</tbody>
-</table>
-<h3 id="替换命令"><a href="#替换命令" class="headerlink" title="替换命令"></a><a name="4.1">替换命令</a></h3><ol>
-<li><p><code>:s/target/replacement/</code>：替换当前行的第一个<code>target</code>为<code>replacement</code></p>
-<p><code>:s/target/replacement/g</code>：替换当前行的所有的<code>target</code>为<code>replacement</code></p>
-</li>
-<li><p><code>:n,$s/target/replacement/</code>：替换第n到最后一行的第一个<code>target</code>为<code>replacement</code></p>
-<p><code>:n,$s/target/replacement/g</code>：替换第n到最后一行的所有的<code>target</code>为<code>replacement</code></p>
-</li>
-<li><p><code>:%s/target/replacement</code>：替换所有行的第一个<code>target</code>为<code>replacement</code></p>
-<p><code>:%s/target/replacement/g</code>：替换所有行的所有的<code>target</code>为<code>replacement</code></p>
-</li>
-<li><p>用<code>#</code>或<code>+</code>作为分隔符，<code>/</code>作为匹配项中的内容:</p>
-<p><code>:s#target/#/replacement#g</code>：替换所有行的第一个<code>target/</code>为<code>/replacement</code></p>
-<p><code>:%s+/oradata/apras/+/user01/apras1+g</code>:替换所有行的<code>/oradata/apras/</code>为<code>/user01/apras1/</code></p>
-</li>
-</ol>
-
+        <p><img src="https://cloud.githubusercontent.com/assets/16514704/25273844/2894bc8e-26c0-11e7-87f3-2a051d1e92b9.jpg" alt="cover_900x500"><br>随着 4G 的普遍以及 WiFi 的广泛使用，手机上的网速已经足够稳定和高速，以视频为主的 HTML5 也越来越普遍了，相比帧动画，视频的表现更加丰富，这里介绍一些实践经验。</p>
+<h3 id="video的属性"><a href="#video的属性" class="headerlink" title="video的属性"></a>video的属性</h3>
+        
+          <p class="article-more-link">
+            <a href="/2017/04/24/h5-video/#more">Read More</a>
+          </p>
+        
       
     </div>
   
     <footer class="article-footer">
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/">vim</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/视频播放-H5-video/">视频播放 H5 video</a></li></ul>
 
     </footer>
   

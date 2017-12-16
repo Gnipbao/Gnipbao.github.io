@@ -5,18 +5,18 @@
   
   <title>Uint8Array to string in Javascript - Gnipbao&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+  <meta name="description" content="Little strings少量数据使用超出异常123456789/** * little arrays (&amp;gt;=100k characters), otherwise  you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#12">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Uint8Array to string in Javascript">
-<meta property="og:url" content="https://gnipbao.github.io/2017/12/16/Uint8Array-to-string/index.html">
+<meta property="og:url" content="https://gnipbao.github.io/2017/11/15/Uint8Array-to-string/index.html">
 <meta property="og:site_name" content="Gnipbao&#39;s blog">
-<meta property="og:description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+<meta property="og:description" content="Little strings少量数据使用超出异常123456789/** * little arrays (&amp;gt;=100k characters), otherwise  you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#12">
 <meta property="og:locale" content="zh-cn">
-<meta property="og:updated_time" content="2017-12-16T15:17:39.000Z">
+<meta property="og:updated_time" content="2017-12-16T15:51:36.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Uint8Array to string in Javascript">
-<meta name="twitter:description" content="Little strings少量数据使用超出异常 12345678/** * little arrays (&amp;gt;=100k characters), otherwise you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#123">
+<meta name="twitter:description" content="Little strings少量数据使用超出异常123456789/** * little arrays (&amp;gt;=100k characters), otherwise  you&apos;ll get exceptions as RangeError : Maximum call  * stack size exceeded or Out of stack space. * @returns &amp;#12">
   
     <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
   
@@ -77,8 +77,8 @@
       </header>
     
     <div class="article-meta">
-      <a href="/2017/12/16/Uint8Array-to-string/" class="article-date">
-  <time datetime="2017-12-16T15:17:05.000Z" itemprop="datePublished">2017-12-16</time>
+      <a href="/2017/11/15/Uint8Array-to-string/" class="article-date">
+  <time datetime="2017-11-15T15:17:05.000Z" itemprop="datePublished">2017-11-15</time>
 </a>
       
   <div class="article-category">
@@ -89,8 +89,8 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Little-strings"><a href="#Little-strings" class="headerlink" title="Little strings"></a>Little strings</h3><p>少量数据使用超出异常</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * little arrays (&gt;=100k characters), otherwise you'll get exceptions as RangeError : Maximum call </span></span><br><span class="line"><span class="comment"> * stack size exceeded or Out of stack space.</span></span><br><span class="line"><span class="comment"> * @returns &#123;string&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uint8arrayToStringMethod</span>(<span class="params">myUint8Arr</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, myUint8Arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h3 id="Little-strings"><a href="#Little-strings" class="headerlink" title="Little strings"></a>Little strings</h3><p>少量数据使用超出异常<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * little arrays (&gt;=100k characters), otherwise</span></span><br><span class="line"><span class="comment">  you'll get exceptions as RangeError : Maximum call </span></span><br><span class="line"><span class="comment"> * stack size exceeded or Out of stack space.</span></span><br><span class="line"><span class="comment"> * @returns &#123;string&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uint8arrayToStringMethod</span>(<span class="params">myUint8Arr</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="built_in">String</span>.fromCharCode.apply(<span class="literal">null</span>, myUint8Arr);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <h3 id="Browser-implementation"><a href="#Browser-implementation" class="headerlink" title="Browser implementation"></a>Browser implementation</h3><p>浏览器环境使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/TextEncoder/TextEncoder" target="_blank" rel="noopener">TextEncoder</a> 和 <a href="https://developer.mozilla.org/en-US/docs/Web/API/TextDecoder/TextDecoder" target="_blank" rel="noopener">TextDecoder</a> 原生方法实现，注意兼容性。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert an Uint8Array into a string.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;String&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Decodeuint8arr</span>(<span class="params">uint8array</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextDecoder(<span class="string">"utf-8"</span>).decode(uint8array);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Convert a string into a Uint8Array.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * @returns &#123;Uint8Array&#125;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Encodeuint8arr</span>(<span class="params">myString</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> TextEncoder(<span class="string">"utf-8"</span>).encode(myString);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Crossplatform-method"><a href="#Crossplatform-method" class="headerlink" title="Crossplatform method"></a>Crossplatform method</h3><p>跨平台依赖性低运行良好</p>
@@ -112,9 +112,17 @@
     
 <nav id="article-nav">
   
+    <a href="/2017/11/20/js-download-pdf/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          如何使用JavaScript下载文件
+        
+      </div>
+    </a>
   
-    <a href="/2017/12/16/js-get-ip/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">如何使用JavaScript获取IP地址&nbsp;<span>&gt;</span></div>
+  
+    <a href="/2017/10/16/vim-headbook/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">vim headbook&nbsp;<span>&gt;</span></div>
     </a>
   
 </nav>
@@ -125,7 +133,7 @@
 
 <section id="comments">
   <!-- 多说评论框 start -->
-  <div class="ds-thread" data-thread-key="post-Uint8Array-to-string" data-title="Uint8Array to string in Javascript" data-url="https://gnipbao.github.io/2017/12/16/Uint8Array-to-string/"></div>
+  <div class="ds-thread" data-thread-key="post-Uint8Array-to-string" data-title="Uint8Array to string in Javascript" data-url="https://gnipbao.github.io/2017/11/15/Uint8Array-to-string/"></div>
   <!-- 多说评论框 end -->
   <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
   <script type="text/javascript">
