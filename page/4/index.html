@@ -62,7 +62,7 @@
   </div>
 </header>
     <section id="main" class="outer">
-      <article id="post-common-function-set" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-js-promise" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -70,15 +70,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/30/common-function-set/">JavaScript中常用函数集合</a>
+      <a class="article-title" href="/2016/06/19/js-promise/">JavaScript Promise</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/04/30/common-function-set/" class="article-date">
-  <time datetime="2016-04-30T11:04:32.000Z" itemprop="datePublished">2016-04-30</time>
+      <a href="/2016/06/19/js-promise/" class="article-date">
+  <time datetime="2016-06-19T12:35:57.000Z" itemprop="datePublished">2016-06-19</time>
 </a>
       
   <div class="article-category">
@@ -89,18 +89,10 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>我们都知道函数在JavaScript中的地位是非常重要的，函数式编程是这门语言的精髓，本文不会在这里针对函数去展开，后面我会详细介绍JavaScript的函数式编程的一些概念，这里主要是收集一些我们平时常用到的函数，如果能熟练应用的话会对你的编程速度有很大的提高。希望能帮助到更多的人：）</p>
-<h3 id="常用函数集合"><a href="#常用函数集合" class="headerlink" title="常用函数集合"></a>常用函数集合</h3><ol>
-<li><p>将类数组对象转换为真数组</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayify</span>(<span class="params">a</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> [].slice.call(a);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>判断是否移动设备访问</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//first</span></span><br><span class="line"><span class="keyword">var</span> ua = navigator.userAgent.toLowerCase(),</span><br><span class="line">    isMobile = ua.search( <span class="regexp">/(iphone)|(ipod)|(android)/</span> ) === <span class="number">-1</span>; <span class="comment">//false是移动设备，true不是 </span></span><br><span class="line"><span class="comment">//second</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">isMobileUserAgent</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ua = navigator.userAgent.toLowerCase();</span><br><span class="line">    <span class="keyword">return</span> (<span class="regexp">/iphone|ipod|android.*mobile|windows.*phone|blackberry.*mobile/i</span>.test(ua));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>获取当前路径</p>
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>  我们都知道JavaScript是单线程的，这意味着任何两句代码都不能同时运行，它们得一个接一个来。在浏览器中，JavaScript 和其他任务共享一个线程，不同的浏览器略有差异，但大体上这些和 JavaScript共享线程的任务包括重绘、更新样式、用户交互等，所有这些任务操作都会阻塞其他任务。<br>   作为人类，你是多线程的。你可以用多个手指同时敲键盘，也可以一边开车一遍电话。唯一的全局阻塞函数是打喷嚏，打喷嚏期间所有其他事务都会暂停。很烦人对么？尤其是当你开着车打着电话的时候。我们都不喜欢这样打喷嚏的代码。
         
           <p class="article-more-link">
-            <a href="/2016/04/30/common-function-set/#more">Read More</a>
+            <a href="/2016/06/19/js-promise/#more">Read More</a>
           </p>
         
       
@@ -118,7 +110,7 @@
 
 
     
-      <article id="post-js-call" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-js-closures" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -126,15 +118,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/24/js-call/">JavaScript中call,apply,bind以及this的理解</a>
+      <a class="article-title" href="/2016/05/25/js-closures/">Javascript闭包常见用法</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/04/24/js-call/" class="article-date">
-  <time datetime="2016-04-24T08:03:55.000Z" itemprop="datePublished">2016-04-24</time>
+      <a href="/2016/05/25/js-closures/" class="article-date">
+  <time datetime="2016-05-25T13:02:11.000Z" itemprop="datePublished">2016-05-25</time>
 </a>
       
   <div class="article-category">
@@ -145,14 +137,11 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>在JavaScript中调用一个函数将暂停当前函数的执行，传递控制权和参数给新函数。除了声明时定义形参，每个函数接收两个附加的参数：<code>this</code>和<code>arguments</code>。参数<code>this</code>在面向对象中非常重要，它取决于调用的模式。在JavaScript中共有四种<strong>调用模式：</strong>方法调用模式、函数调用模式、构造器调用模式、和<code>apply()</code>,<code>call()</code>方法调用模式。这些模式在如何初始化关键参数this存在差异。本文首先要提到的是this，抛开this单独去说这些方法是没有意义的。然后是如何妙用call,apply,bind这些方法去改变<code>this</code>的指向。</p>
-<h3 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h3><ul>
-<li>this在不同模式下的意义</li>
-<li>借鸡下蛋之妙用call，apply</li>
-<li>深入理解bind函数
+        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p>学过JavaScript这门语言的同学想必都听说过闭包一词,<strong>闭包</strong>在日常开发中用的也是非常广泛的。可是当面试问你闭包是什么的时候,总感觉说不到点上。究竟什么是<strong>闭包</strong>呢？它是怎么起作用的？如何使用闭包去简化开发？如何用闭包提高性能以及如何用闭包解决作用域的问题？本文就为大家解开闭包的真面纱(为js开包…)</p>
+<h3 id="闭包"><a href="#闭包" class="headerlink" title="闭包"></a>闭包</h3><p>首先要知道什么是闭包就得知道闭包是怎么产生的。在javascript中只有函数存在作用域,并且函数可以被嵌套使用，so当我们使用函数套用的时候就产生了一个有趣的现象,我们在子函数中可以任意访问外部函数中定义的变量和方法，但是外面的函数却得不到里面函数中定义的变量。
         
           <p class="article-more-link">
-            <a href="/2016/04/24/js-call/#more">Read More</a>
+            <a href="/2016/05/25/js-closures/#more">Read More</a>
           </p>
         
       
@@ -170,7 +159,7 @@
 
 
     
-      <article id="post-javascript-array" class="article article-type-post" itemscope itemprop="blogPost">
+      <article id="post-function" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-inner">
     
     
@@ -178,15 +167,15 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/23/javascript-array/">JavaScript原生数组</a>
+      <a class="article-title" href="/2016/05/10/function/">JavaScript函数的特性</a>
     </h1>
   
 
       </header>
     
     <div class="article-meta">
-      <a href="/2016/04/23/javascript-array/" class="article-date">
-  <time datetime="2016-04-23T02:58:51.000Z" itemprop="datePublished">2016-04-23</time>
+      <a href="/2016/05/10/function/" class="article-date">
+  <time datetime="2016-05-10T14:34:19.000Z" itemprop="datePublished">2016-05-10</time>
 </a>
       
   <div class="article-category">
@@ -197,11 +186,17 @@
     </div>
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><p> 数组是类似列表的对象，在原型中提供了一些遍历以及改变其中对象的方法。JavaScript数组的长度及其中元素的类型都是不固定的。因为数组的长度可以随时增长或缩减，所以JavaScript 数组不保证是密集的。通常情况下，这是一些方便的特性；如果这些特性不适用于你的特定使用场景，你可以考虑使用固定类型数组。在JavaScript中数组可以使用数组构造函<code>Array</code>被创建,为了方便一般用中括号<code>[]</code>创建,<code>Arrays</code>继承<code>Object</code>的原型.<code>typeof</code>检测数组的类型会返回<code>object</code>,可是使用[]instanceof Array,会返回true,也就是说在JavaScript中存在类似数组的<code>Array-like</code>的对象<code>objects</code>,例如:strings,<code>arguments</code>对象,arguments对象不是数组的实例,但是它有<code>length</code>属性,它的值和数组的下标属性之间是有关系的并且length是可变的(例如, push, splice, 等) 会改变<code>Array</code>的 <code>length</code>属性。因此它可以像任何数组一样去遍历.这篇文章主要介绍一些<code>Array.prototype</code>中常用的方法,尽可能揭开每一种方法的真面纱。</p>
-<p> <img src="/images/Array.png" alt="JavaScript-Array"><br> 你可以在你的浏览器控制台里面尝试！<br>
+        <h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><p>javascript对函数的实现是最好的，函数可以说是javascript的灵魂，它几乎可以说是无所不能的，函数包含一组语句，他们是JavaScript的基础模块单元，用与代码复用、信息隐藏和组合调用。函数用与指定对象行为。</p>
+<blockquote>
+<p><strong>所谓编程就是将一组需求分解成函数与数据结构的技能</strong>。</p>
+</blockquote>
+<ul>
+<li>函数对象(Function Object)</li>
+<li>函数字面量(Function Literal)</li>
+<li>调用(Invocation)
         
           <p class="article-more-link">
-            <a href="/2016/04/23/javascript-array/#more">Read More</a>
+            <a href="/2016/05/10/function/#more">Read More</a>
           </p>
         
       
@@ -220,14 +215,14 @@
 
     
       <nav id="page-nav">
-        <a class="extend prev" rel="prev" href="/page/3/">&laquo; Назад</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/5/">Далее &raquo;</a>
+        <a class="extend prev" rel="prev" href="/page/3/">&laquo; 上一页</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/5/">下一页 &raquo;</a>
       </nav>
     </section>
     <footer id="footer">
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2017 Gnip&nbsp;
+      &copy; 2018 Gnip&nbsp;
       Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
 
     </div>

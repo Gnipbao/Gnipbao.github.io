@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>gdb速查表 - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Essential Commands    简记 描述     gdb  &amp;emsp;program [core] 调试core文件   b   &amp;emsp; [file:] function 设置断点在函数上   r   &amp;emsp;run简写 运行你的程序   bt    &amp;emsp;backtrace 显示程序栈     p   &amp;emsp;expr 打印显示表达式的值   c    &amp;em">
+<meta name="keywords" content="Linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="gdb速查表">
+<meta property="og:url" content="https://gnipbao.github.io/2018/02/07/gdb-quick-reference/index.html">
+<meta property="og:site_name" content="Gnipbao&#39;s blog">
+<meta property="og:description" content="Essential Commands    简记 描述     gdb  &amp;emsp;program [core] 调试core文件   b   &amp;emsp; [file:] function 设置断点在函数上   r   &amp;emsp;run简写 运行你的程序   bt    &amp;emsp;backtrace 显示程序栈     p   &amp;emsp;expr 打印显示表达式的值   c    &amp;em">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:updated_time" content="2018-03-01T09:09:58.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="gdb速查表">
+<meta name="twitter:description" content="Essential Commands    简记 描述     gdb  &amp;emsp;program [core] 调试core文件   b   &amp;emsp; [file:] function 设置断点在函数上   r   &amp;emsp;run简写 运行你的程序   bt    &amp;emsp;backtrace 显示程序栈     p   &amp;emsp;expr 打印显示表达式的值   c    &amp;em">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <a href="https://github.com/gnipbao/iblog" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/h5-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-gdb-quick-reference" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      gdb速查表
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/02/07/gdb-quick-reference/" class="article-date">
+  <time datetime="2018-02-07T09:04:40.000Z" itemprop="datePublished">2018-02-07</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/工具/">工具</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Essential-Commands"><a href="#Essential-Commands" class="headerlink" title="Essential Commands"></a>Essential Commands</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>简记</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gdb</strong>  &emsp;<em>program [core]</em></td>
+<td>调试core文件</td>
+</tr>
+<tr>
+<td><strong>b</strong>   &emsp; <em>[file:] function</em></td>
+<td>设置断点在函数上</td>
+</tr>
+<tr>
+<td><strong>r</strong>   &emsp;<em>run简写</em></td>
+<td>运行你的程序</td>
+</tr>
+<tr>
+<td><strong>bt</strong>    &emsp;<em>backtrace</em></td>
+<td>显示程序栈  </td>
+</tr>
+<tr>
+<td><strong>p</strong>   &emsp;<em>expr</em></td>
+<td>打印显示表达式的值</td>
+</tr>
+<tr>
+<td><strong>c</strong>    &emsp;<em>continue</em></td>
+<td>继续运行程序</td>
+</tr>
+<tr>
+<td><strong>n</strong>    &emsp;<em>next</em></td>
+<td>下一行 跳过函数调用</td>
+</tr>
+<tr>
+<td><strong>s</strong>   &emsp; <em>step</em></td>
+<td>下一行 步入函数调用</td>
+</tr>
+</tbody>
+</table>
+<a id="more"></a>
+<h3 id="Starting-GDB"><a href="#Starting-GDB" class="headerlink" title="Starting GDB"></a>Starting GDB</h3><table>
+<thead>
+<tr>
+<th></th>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gdb</strong>    &emsp;</td>
+<td>开启gdb 没有debug文件</td>
+</tr>
+<tr>
+<td><strong>gdb</strong>    &emsp; <em>program</em></td>
+<td>开始调试可执行文件</td>
+</tr>
+<tr>
+<td><strong>gdb</strong>   &emsp; <em>program</em> &nbsp; <em>core dump file</em></td>
+<td>调试core是程序非法执行后core dump后产生的文件</td>
+</tr>
+<tr>
+<td><strong>gdb</strong>    &emsp; –help</td>
+<td>命令行帮助选项</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Stoping-GDB"><a href="#Stoping-GDB" class="headerlink" title="Stoping GDB"></a>Stoping GDB</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>quit</strong>    &emsp; <em>q or EOF</em>     |  退出GDB; eg <strong>C-d</strong><br><strong>INTERRUPT</strong>               | 终止当前命令，eg <strong>C-c</strong></p>
+<h3 id="Getting-Help"><a href="#Getting-Help" class="headerlink" title="Getting Help"></a>Getting Help</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>help</strong>                           |  列出命令的类型<br><strong>help</strong>    <em>class</em>           | 命令类型的描述<br><strong>help</strong>   <em>command</em>    | 命令描述</p>
+<h3 id="Executing-your-Program"><a href="#Executing-your-Program" class="headerlink" title="Executing your Program"></a>Executing your Program</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>run</strong>    &emsp; <em>arglist</em>                   |  使用arglist开始程序<br><strong>run</strong>    &emsp;                                    | 使用当前参数列表开始程序<br><strong>run</strong>   &emsp; <inf> outf                    | 使用input output开始程序<br><strong>kill</strong>    | 结束运行程序<br><strong>tty</strong>  &emsp;<em>dev</em> |使用dev作为标准输入输出为下一次的<strong>run</strong><br><strong>set args</strong>  <em>arglist</em>      | 为下一次<strong>run</strong>指定<em>arglist</em><br><strong>set args</strong>  &emsp;      | 指定空参数列表<br><strong>show args</strong> &emsp;    | 显示参数列表<br><strong>show args</strong> &emsp;<em>var</em> | 显示环境中var的值<br><strong>set env</strong> &emsp; <em>var string</em> | 设置环境变量<em>var=string</em><br><strong>unset env</strong> &emsp; <em>var</em>   | 移除环境变量<em>var</em></inf></p>
+<h3 id="Shell-Commands"><a href="#Shell-Commands" class="headerlink" title="Shell Commands"></a>Shell Commands</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>cd</strong>    &emsp; <em>dir</em>           |  改变当前目录到dir<br><strong>pwd</strong>    &emsp;                  |打印当前目录<br><strong>make</strong>   &emsp;               | 调用 <strong>make</strong><br><strong>shell</strong>  &emsp; <em>cmd</em>     |  执行shell 命令串</p>
+<h3 id="Breakpoint-and-Watchpoints"><a href="#Breakpoint-and-Watchpoints" class="headerlink" title="Breakpoint and Watchpoints"></a>Breakpoint and Watchpoints</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>break</strong>    &emsp; <em>[file:] line</em>           |  设置断点在<em>file</em>中<em>line</em>行处<br><strong>b</strong>    &emsp;   <em>[file:] line</em>               |eg: break mian.c :37.<br><strong>break</strong>   &emsp;  <em>[file:] func</em>        | 设置断点在<em>file</em>中<em>func</em>处<br><strong>break</strong>  <em>+offset or -offset</em>     | 设置断点在<em>offset</em>行距离当前停止<br><strong>break</strong> &emsp;  <em>*addr</em>                | 在地址<em>addr</em>处设置断点<br><strong>break…if</strong> &emsp; expr               | 设置条件断点在<em>expr</em>不为0的时候<br><strong>tbreak</strong> &emsp; …    | 临时断点 在到达后无效<br><strong>rbreak</strong> &emsp;<em>[file:]regex</em>  | 设置在所有函数匹配 <em>regex</em>在<em>file</em>中<br><strong>watch</strong>  &emsp; <em>expr</em> | 设置一个观察点对表达式<em>expr</em><br><strong>catch</strong>   &emsp; <em>event</em> | 设置在event上能够被catch，throw，exec，fork，vfork，load，or unload.<br>|    |<br><strong>info break</strong>   | 显示定义的断点<br><strong>info watch</strong>  | 显示定义的观察点<br>|    |<br><strong>clear</strong>  | 删除调断点在下一个描述上<br><strong>clear</strong>  &emsp;<em>[file:]fun</em> | 删除在fun()入口的断点<br><strong>clear</strong> &emsp; <em>[file: ]line</em> | 清除第line行的断点<br><strong>delete</strong> &emsp;<em>[n]</em> | 删除断点n[或者断点n]<br><strong>disable</strong> &emsp;<em>[n]</em>| 暂停第n个断点<br><strong>enable</strong> &emsp; <em>[n]</em> | 开启第n个断点</p>
+<h3 id="Execution-Control"><a href="#Execution-Control" class="headerlink" title="Execution Control"></a>Execution Control</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>continue</strong> <em>[count]</em>   |  继续执行，到下一个断点处或运行结束<br><strong>c</strong>        &emsp; <em>[count]</em>     |  <strong>continue</strong>简写<br><strong>step</strong>   &emsp;  <em>[count]</em>        | 单步调试如果有函数调用，则进入函数<br><strong>s</strong>        &emsp;  <em>[count]</em>        | <strong>step</strong>简写<br><strong>stepi</strong>  &emsp;  <em>[count]</em>       | 单步执行一条机器指令<br><strong>si</strong>        &emsp;  <em>[count]</em>    | <strong>stepi</strong> 简写<br><strong>next</strong>    &emsp; <em>[count]</em>     | 执行下一行包括函数调用<br><strong>n</strong>        &emsp; <em>[count]</em>    | <strong>next</strong> 简写<br><strong>nexti</strong>    &emsp; <em>[count]</em>     | 执行下一条机器指令而不是原始行<br><strong>ni</strong>        &emsp; <em>[count]</em>    | <strong>nexti</strong> 简写<br><strong>until</strong>   &emsp; <em>[location]</em> | 运行至某行，不仅仅用来跳出循环<br><strong>finish</strong>  &emsp;    | 运行程序直到当前函数完成返回，并打印函数返回时的堆栈地址返回值及参数值<br><strong>jump</strong> &emsp; <em>line</em> | 重新执行在指定的行数或地址<br><strong>jump*</strong> &emsp; <em>address</em> | </p>
+<h3 id="Display"><a href="#Display" class="headerlink" title="Display"></a>Display</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>print</strong> &nbsp; <em>[/f] [expr]</em>   |  显示表达式<em>expr</em>的值<br><strong>p</strong>  &nbsp; <em>[/f] [expr]</em>       |  格式化<em>f</em> <a href="https://sourceware.org/gdb/onlinedocs/gdb/Output-Formats.html" target="_blank" rel="noopener">详细</a><br><strong>x</strong> &nbsp;<em>[N u f] expr</em>  | 查看内存的 /后可以指定格式化显示<br><strong>whatis</strong> &nbsp; | 查询变量或函数</p>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><strong>dir</strong> &nbsp; <em>names</em>   |  添加目录名<em>names</em>到源路径<br><strong>dir</strong>  &nbsp;      |  清理源路径<br><strong>show dir</strong> &nbsp;  | 显示当前源路径<br><strong>whatis</strong> &nbsp; | 查询变量或函数<br><strong>list</strong> &nbsp; |  显示下十行源代码或者将接着上一次 list 命令的输出下边的内容<br><strong>list</strong> &nbsp;-  | 显示前十行<br><strong>list</strong> &nbsp; <em>lines</em> | 将显示当前文件以<em>lines</em>为中心的前后10行代码<br><strong>info line</strong> &nbsp; <em>num</em>  | 显示编译代码在<em>num</em>行处开始结束地址<br><strong>info source</strong> &nbsp; | 显示源文件的名字<br><strong>info sources</strong> &nbsp; | 显示所有源文件在使用中<br><strong>forw</strong> &nbsp; <em>regex</em> | 搜索<em>regex</em>在下面源码中</p>
+<h3 id="GDB-Quick-查询卡片"><a href="#GDB-Quick-查询卡片" class="headerlink" title="GDB Quick 查询卡片"></a>GDB Quick 查询卡片</h3><p><a href="https://github.com/gnipbao/iblog/blob/master/static/gdb-refcard.pdf" target="_blank" rel="noopener">GDB QUICK REFERENCE</a></p>
+<h3 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h3><p><a href="http://www.yolinux.com/TUTORIALS/GDB-Commands.html" target="_blank" rel="noopener">http://www.yolinux.com/TUTORIALS/GDB-Commands.html</a><br><a href="https://sourceware.org/gdb/onlinedocs/gdb/" target="_blank" rel="noopener">https://sourceware.org/gdb/onlinedocs/gdb/</a><br><a href="http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html" target="_blank" rel="noopener">http://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/gdb.html</a></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/26/http-status-code-ref/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">HTTP状态码查询表&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-gdb-quick-reference" data-title="gdb速查表" data-url="https://gnipbao.github.io/2018/02/07/gdb-quick-reference/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

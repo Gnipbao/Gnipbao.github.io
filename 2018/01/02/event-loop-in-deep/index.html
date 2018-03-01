@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>深入理解Event Loop - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="浏览器环境基本概念为了协调事件、用户交互、脚本、呈现、网络等，UA必须使用事件循环的机制。事件循环有两种模式：用于browsing contexts(浏览环境上下文)的循环，以及用于workers的循环。  browsing contexts事件循环 每个browsing contexts event loop个至少含有一个browsing context上下文环境，该事件循环依赖与环境，环境消失">
+<meta name="keywords" content="JAVASCRIPT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解Event Loop">
+<meta property="og:url" content="https://gnipbao.github.io/2018/01/02/event-loop-in-deep/index.html">
+<meta property="og:site_name" content="Gnipbao&#39;s blog">
+<meta property="og:description" content="浏览器环境基本概念为了协调事件、用户交互、脚本、呈现、网络等，UA必须使用事件循环的机制。事件循环有两种模式：用于browsing contexts(浏览环境上下文)的循环，以及用于workers的循环。  browsing contexts事件循环 每个browsing contexts event loop个至少含有一个browsing context上下文环境，该事件循环依赖与环境，环境消失">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16514704/34437926-ba3fba06-ecdd-11e7-9f0d-d0362d2acbd5.png">
+<meta property="og:updated_time" content="2018-03-01T09:09:41.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解Event Loop">
+<meta name="twitter:description" content="浏览器环境基本概念为了协调事件、用户交互、脚本、呈现、网络等，UA必须使用事件循环的机制。事件循环有两种模式：用于browsing contexts(浏览环境上下文)的循环，以及用于workers的循环。  browsing contexts事件循环 每个browsing contexts event loop个至少含有一个browsing context上下文环境，该事件循环依赖与环境，环境消失">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16514704/34437926-ba3fba06-ecdd-11e7-9f0d-d0362d2acbd5.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <a href="https://github.com/gnipbao/iblog" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/h5-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-event-loop-in-deep" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深入理解Event Loop
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/01/02/event-loop-in-deep/" class="article-date">
+  <time datetime="2018-01-02T08:58:36.000Z" itemprop="datePublished">2018-01-02</time>
+</a>
+      
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="浏览器环境"><a href="#浏览器环境" class="headerlink" title="浏览器环境"></a>浏览器环境</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><p>为了协调事件、用户交互、脚本、呈现、网络等，UA必须使用事件循环的机制。事件循环有两种模式：用于<strong>browsing contexts</strong>(浏览环境上下文)的循环，以及用于<strong>workers</strong>的循环。</p>
+<ul>
+<li>browsing contexts事件循环<br> 每个<code>browsing contexts event loop</code>个至少含有一个<strong>browsing context</strong>上下文环境，该事件循环依赖与环境，环境消失的话该事件机制也将销亡.</li>
+<li><p>workers 事件循环<br>  <strong>workers</strong>与此类似 每个worker 有一个事件循环，并通过<code>worker processing model</code> 管理事件循环的生命周期.</p>
+<a id="more"></a>
+<h3 id="task-queue-任务队列"><a href="#task-queue-任务队列" class="headerlink" title="task queue(任务队列)"></a>task queue(任务队列)</h3><p>一个事件循环会有一个或者多个任务队列。任务队列是一个有序的list集合，用来处理下面的任务:</p>
+<ul>
+<li>Events 任务的分发</li>
+<li>Parsing 解析处理，例如HTML parser。</li>
+<li>Callbacks 处理回调任务</li>
+<li>Using a resource 异步获取一个资源</li>
+<li>DOM manipulation 操作DOM</li>
+</ul>
+</li>
+</ul>
+<h3 id="task-任务"><a href="#task-任务" class="headerlink" title="task(任务)"></a>task(任务)</h3><ul>
+<li>任务被定义是来自指定的<strong>任务源</strong>，来自同一个指定任务源的任务总是会被注入到指定事件循环的同一个任务队列，但是来自不同任务源的任务是可能被放到不同的队列，也可能放到同一队列。</li>
+<li>每个事件循环有一个<strong>当前运行时任务</strong>，初始化时候为空，被用来处理被注入的事件。每个事件循环同事还有个<code>microtask</code>的flag用来检测微任务默认情况为false。来用防止注入事件时调用<code>microtask</code>检测点算法。</li>
+</ul>
+<h3 id="Processing-model-事件循环处理器"><a href="#Processing-model-事件循环处理器" class="headerlink" title="Processing model(事件循环处理器)"></a>Processing model(事件循环处理器)</h3><p>   一个事件循环其实就是在不断运行下面这些步骤的操作：</p>
+<pre><code>1. 把*oldestTask*标记为*oldest task*. UA可以选择任意任务队列，如果没有选择跳到*Microtasks*微任务处理
+2. 将**当前运行任务**设置成 *oldestTask*.
+3. 运行 *oldestTask*.
+4. 将事件循环的**当前运行任务** 置为`null`
+5. 从任务队列中移除*oldestTask*.
+6. Microtasks: 微任务检测点，执行微任务检测.
+7. 更新渲染(Update rendering) 主要是浏览器渲染过程不详细展开.
+8. worker事件循环判断.
+</code></pre><h3 id="微任务检测"><a href="#微任务检测" class="headerlink" title="微任务检测"></a>微任务检测</h3><ol>
+<li>将微任务检测点flag设置为<code>true</code></li>
+<li>当事件循环的微任务队列不为空，执行下面操作与上述操作类似：<ol>
+<li><strong>oldestMicrotask</strong> -&gt;<strong>oldest microtask</strong>.</li>
+<li>将<strong>当前运行任务</strong>设置成 <em>oldestMicrotask</em>.</li>
+<li>运行 <em>oldestMicrotask</em>.</li>
+<li>将事件循环<strong>当前运行任务</strong> 置为<code>null</code></li>
+<li>从微任务队列中移除<em>oldestMicrotask</em>.</li>
+</ol>
+</li>
+<li>每次与事件循环相关的环境对象设置.</li>
+<li>清理索引数据库事务</li>
+<li>将微任务检测点flag设置为<code>false</code></li>
+</ol>
+<h2 id="事件循环"><a href="#事件循环" class="headerlink" title="事件循环"></a>事件循环</h2><p>上述概念为<code>whatwg</code>规范概念，具体实现还得看浏览器厂商。之所以称为事件循环，是因为它经常被用于类似如下的方式来实现：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> (queue.waitForMessage()) &#123;</span><br><span class="line">  queue.processNextMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>由于js的运行环境是单线程的，函数调用会形成了一个栈帧，对象被分配在一个堆中，即用以表示一个大部分非结构化的内存区域 ，除此之外JavaScript 运行时还包含了一个待处理的消息队列。每一个消息都与一个函数相关联。当栈拥有足够内存时，从队列中取出一个消息进行处理。<br>看图来分析如下：<br><img src="https://user-images.githubusercontent.com/16514704/34437926-ba3fba06-ecdd-11e7-9f0d-d0362d2acbd5.png" alt="js_runtime"><br>主线程运行时函数会被压入函数调用栈等待执行，当调用栈中的函数被调用时，任务分发器会根据任务源把对应任务放入不同的event队列中。如webaips产生的回调会被放入回调队列，微任务<code>microtask</code>会被放入微任务队列。事件循环处理器也就是<code>event loop</code>按照前面的步骤做loop。</p>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a><strong>注意</strong></h3><ul>
+<li>一个进程中，事件循环是唯一的，但是任务队列可以拥有多个。</li>
+<li>每个任务会在任务结束后进行微任务检查并处理微任务。</li>
+<li>任务队列又分为macrotask(宏任务)与microtask(微任务)，在最新标准中，它们被分别称为task与jobs.</li>
+<li>常见macrotask和microtask<ul>
+<li>macrotask -&gt;script(整体代码), setTimeout, setInterval, setImmediate, I/O, UI rendering.</li>
+<li>microtask -&gt; process.nextTick, Promise, Object.observe, MutationObserver</li>
+</ul>
+</li>
+<li>setTimeout/Promise等我们称之为任务源。而进入任务队列的是他们指定的具体执行任务。</li>
+<li>同种任务顺序优先级<ul>
+<li>macrotask：script(整体代码)-&gt;setTimeout(setInterval同源)-&gt;setImmediate </li>
+<li>microtask：process.nextTick-&gt;Promise(then)</li>
+</ul>
+</li>
+</ul>
+<h2 id="Node-js-环境"><a href="#Node-js-环境" class="headerlink" title="Node.js 环境"></a>Node.js 环境</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>当Node.js启动时会初始化event loop，下图是一个简化版的事件循环执行顺序，大体分为六个阶段。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   ┌───────────────────────┐</span><br><span class="line">┌─&gt;│        timers         │</span><br><span class="line">│  └──────────┬────────────┘</span><br><span class="line">│  ┌──────────┴────────────┐</span><br><span class="line">│  │     I/O callbacks     │</span><br><span class="line">│  └──────────┬────────────┘</span><br><span class="line">│  ┌──────────┴────────────┐</span><br><span class="line">│  │     idle, prepare     │</span><br><span class="line">│  └──────────┬────────────┘      ┌───────────────┐</span><br><span class="line">│  ┌──────────┴────────────┐      │   incoming:   │</span><br><span class="line">│  │         poll          │&lt;─────┤  connections, │</span><br><span class="line">│  └──────────┬────────────┘      │   data, etc.  │</span><br><span class="line">│  ┌──────────┴────────────┐      └───────────────┘</span><br><span class="line">│  │        check          │</span><br><span class="line">│  └──────────┬────────────┘</span><br><span class="line">│  ┌──────────┴────────────┐</span><br><span class="line">└──┤    close callbacks    │</span><br><span class="line">   └───────────────────────┘</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>timers 阶段</strong>: 这个阶段执行<code>setTimeout</code>和<code>setInterval</code>的回调.</li>
+<li><strong>I/O callbacks 阶段</strong>: 执行除了被close或者由定时器，<code>setImmediate</code>所产生的回调外的所有回调.</li>
+<li><strong>idle, prepare 阶段</strong>: 内部使用.</li>
+<li><strong>poll 阶段</strong>: 检索新的IO事件，<code>node</code>有时会阻塞这里.</li>
+<li><strong>check 阶段</strong>: 调用<code>setImmediate</code>的回调.</li>
+<li><strong>close callbacks 阶段</strong>: 一些关闭回调的操作，例如，<code>socket.on(&#39;close&#39;, ...)</code>.</li>
+</ul>
+<h3 id="详细"><a href="#详细" class="headerlink" title="详细"></a>详细</h3><h4 id="timer-定时器"><a href="#timer-定时器" class="headerlink" title="timer 定时器"></a>timer 定时器</h4><p>对于定时器和浏览器API类似，需要注意的是定时器何时执行是由<code>poll</code>阶段决定的，所有精确度不够有时可能被延迟。</p>
+<h4 id="poll"><a href="#poll" class="headerlink" title="poll"></a>poll</h4><p><code>poll</code>阶段主要做两件事：</p>
+<ul>
+<li>执行到达timer时间的脚本.</li>
+<li>处理<code>poll</code>队列中的事件.</li>
+</ul>
+<p>如果event loop进入了 poll阶段，且代码未设定timer，将会发生下面情况：</p>
+<ul>
+<li>如果poll队列不为空，event loop将同步的执行队列里的callback,直至队列为空，或执行的callback到达系统内存限制</li>
+<li>如果<code>poll</code> 队列为空，将会发生下面情况:<ul>
+<li>如果代码已经被<code>setImmediate</code>设定了callback, event loop将结束poll阶段进入check阶段，并执行check阶段的事件. </li>
+<li>如果代码没有设定<code>setImmediate</code>，event loop将阻塞在该阶段等待callbacks加入poll队列.</li>
+</ul>
+</li>
+</ul>
+<p>一旦poll队列为空，事件循环将检查timer是否达到时间，如果有一个或者多个timer到达时间事件循环就会返回到timers阶段执行timers的回调.</p>
+<h4 id="check"><a href="#check" class="headerlink" title="check"></a>check</h4><p>这个阶段容许立即执行一个回调在<strong>poll阶段</strong>完成后，如果poll阶段处于空闲状态并且<code>setImmediate</code>的回调已经入队。那么事件循环将进入<code>check</code>阶段而不是等待.</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/EventLoop</a><br><a href="https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/" target="_blank" rel="noopener">https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/</a><br><a href="https://html.spec.whatwg.org/multipage/webappapis.html#task-queue" target="_blank" rel="noopener">https://html.spec.whatwg.org/multipage/webappapis.html#task-queue</a><br><a href="https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context" target="_blank" rel="noopener">https://stackoverflow.com/questions/25915634/difference-between-microtask-and-macrotask-within-an-event-loop-context</a><br><a href="https://www.jianshu.com/p/de7aba994523" target="_blank" rel="noopener">https://www.jianshu.com/p/de7aba994523</a><br><a href="https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="noopener">https://nodejs.org/en/docs/guides/event-loop-timers-and-nexttick/</a><br><a href="https://cnodejs.org/topic/57d68794cb6f605d360105bf" target="_blank" rel="noopener">https://cnodejs.org/topic/57d68794cb6f605d360105bf</a></p>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JAVASCRIPT/">JAVASCRIPT</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/01/26/http-status-code-ref/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          HTTP状态码查询表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2017/11/21/js-get-ip/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">如何使用JavaScript获取IP地址&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-event-loop-in-deep" data-title="深入理解Event Loop" data-url="https://gnipbao.github.io/2018/01/02/event-loop-in-deep/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>

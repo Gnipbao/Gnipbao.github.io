@@ -116,6 +116,10 @@ body {
   background: #fff;
   font: 16px 'PT Serif', 'STZhongsong', '华文中宋', 'Microsoft Yahei', serif;
   -webkit-text-size-adjust: 100%;
+  cursor: url("images/huaji.png"), auto;
+}
+a:hover {
+  cursor: url("images/yinxian.png"), auto;
 }
 .outer {
   max-width: 800px;

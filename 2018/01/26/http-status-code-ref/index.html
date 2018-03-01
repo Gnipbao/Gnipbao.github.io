@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>HTTP状态码查询表 - Gnipbao&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HTTP状态码分类HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：">
+<meta name="keywords" content="HTTP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP状态码查询表">
+<meta property="og:url" content="https://gnipbao.github.io/2018/01/26/http-status-code-ref/index.html">
+<meta property="og:site_name" content="Gnipbao&#39;s blog">
+<meta property="og:description" content="HTTP状态码分类HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：">
+<meta property="og:locale" content="zh-cn">
+<meta property="og:image" content="https://user-images.githubusercontent.com/16514704/35212487-4b9422e8-ff95-11e7-9531-242b64692a28.png">
+<meta property="og:updated_time" content="2018-03-01T09:10:21.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP状态码查询表">
+<meta name="twitter:description" content="HTTP状态码分类HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/16514704/35212487-4b9422e8-ff95-11e7-9531-242b64692a28.png">
+  
+    <link rel="alternative" href="/atom.xml" title="Gnipbao&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/images/favicon.ico">
+  
+  <link href="/webfonts/ptserif/main.css" rel='stylesheet' type='text/css'>
+  <link href="/webfonts/source-code-pro/main.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <header id="header">
+  <a href="https://github.com/gnipbao/iblog" class="github-corner" aria-label="View source on Github"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <a id="main-nav-toggle" class="nav-icon" href="javascript:;"></a>
+      <a id="logo" class="logo logo-text" href="/">Gnipbao</a>
+      <nav id="main-nav">
+        
+          <a class="main-nav-link" href="/">主页</a>
+        
+          <a class="main-nav-link" href="/archives">归档</a>
+        
+          <a class="main-nav-link" href="/categories">分类</a>
+        
+          <a class="main-nav-link" href="/tags">标签</a>
+        
+          <a class="main-nav-link" href="/h5-test/menu.html">作品</a>
+        
+          <a class="main-nav-link" href="/me">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        <div id="search-form-wrap">
+          <!--<p>-->
+            <!--<a target="_blank" href="http://shang.qq.com/wpa/qunwpa?idkey=6071b891d167a94217254d0d36cec8a338df210ca5831dd09950740807f5da97"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="前端联盟" title="前端联盟"></a>-->
+          <!--</p>-->
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+    <section id="main" class="outer"><article id="post-http-status-code-ref" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP状态码查询表
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-meta">
+      <a href="/2018/01/26/http-status-code-ref/" class="article-date">
+  <time datetime="2018-01-26T09:00:40.000Z" itemprop="datePublished">2018-01-26</time>
+</a>
+      
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/写作/">写作</a>
+  </div>
+
+      
+    </div>
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><img src="https://user-images.githubusercontent.com/16514704/35212487-4b9422e8-ff95-11e7-9531-242b64692a28.png" alt="image"></p>
+<h3 id="HTTP状态码分类"><a href="#HTTP状态码分类" class="headerlink" title="HTTP状态码分类"></a>HTTP状态码分类</h3><p>HTTP状态码由三个十进制数字组成，第一个十进制数字定义了状态码的类型，后两个数字没有分类的作用。HTTP状态码共分为5种类型：<br><a id="more"></a><br>| 分类 | 分类描述  |<br>| :—- |:—————|<br>| 1xx    | 信息性，服务器收到请求，需要请求者继续执行操作 |<br>| 2xx   | 成功，操作被成功接收并处理       |<br>| 3xx   | 重定向，需要进一步的操作以完成请求  |<br>| 4xx   | 客户端错误，请求包含语法错误或无法完成请求 |<br>| 5xx   | 服务器错误，服务器在处理请求的过程中发生了错误 |</p>
+<h3 id="HTTP状态码列表"><a href="#HTTP状态码列表" class="headerlink" title="HTTP状态码列表"></a>HTTP状态码列表</h3><table>
+<thead>
+<tr>
+<th style="text-align:center">状态码</th>
+<th style="text-align:center">原因短语</th>
+<th style="text-align:center">含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">100</td>
+<td style="text-align:center">Continue</td>
+<td style="text-align:center">继续。客户端应继续其请求</td>
+</tr>
+<tr>
+<td style="text-align:center">101</td>
+<td style="text-align:center">Switching Protocols</td>
+<td style="text-align:center">切换协议。服务器根据客户端的请求切换协议。只能切换到更高级的协议，例如，切换到HTTP的新版本协议</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">200</td>
+<td style="text-align:center">OK</td>
+<td style="text-align:center">请求成功。一般用于GET与POST请求</td>
+</tr>
+<tr>
+<td style="text-align:center">201</td>
+<td style="text-align:center">Created</td>
+<td style="text-align:center">已创建。成功请求并创建了新的资源</td>
+</tr>
+<tr>
+<td style="text-align:center">202</td>
+<td style="text-align:center">Accepted</td>
+<td style="text-align:center">已接受。已经接受请求，但服务器还未对其执行任何动作。</td>
+</tr>
+<tr>
+<td style="text-align:center">203</td>
+<td style="text-align:center">Non-Authoritative Information</td>
+<td style="text-align:center">非授权信息。请求成功。但返回的meta信息不在原始的服务器，而是一个副本</td>
+</tr>
+<tr>
+<td style="text-align:center">204</td>
+<td style="text-align:center">No Content</td>
+<td style="text-align:center">无内容。服务器成功处理，但没有实体的主体部分。在未更新网页的情况下，可确保浏览器继续显示当前文档</td>
+</tr>
+<tr>
+<td style="text-align:center">205</td>
+<td style="text-align:center">Reset Content</td>
+<td style="text-align:center">重置内容。服务器处理成功，用户终端（例如：浏览器）应重置文档视图。可通过此返回码清除浏览器的表单域</td>
+</tr>
+<tr>
+<td style="text-align:center">206</td>
+<td style="text-align:center">Partial Content</td>
+<td style="text-align:center">成功执行了一个部分或者Range范围请求。</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">300</td>
+<td style="text-align:center">Multiple Choices</td>
+<td style="text-align:center">多种选择。请求的资源可包括多个位置，相应可返回一个资源特征与地址的列表用于用户终端（例如：浏览器）选择</td>
+</tr>
+<tr>
+<td style="text-align:center">301</td>
+<td style="text-align:center">Moved Permanently</td>
+<td style="text-align:center">永久移动。请求的资源已被永久的移动到新URI，返回信息会包括新的URI，浏览器会自动定向到新URI。今后任何新的请求都应使用新的URI代替</td>
+</tr>
+<tr>
+<td style="text-align:center">302</td>
+<td style="text-align:center">Found</td>
+<td style="text-align:center">临时移动。与301类似。但资源只是临时被移动。客户端应继续使用原有URI</td>
+</tr>
+<tr>
+<td style="text-align:center">303</td>
+<td style="text-align:center">See Other</td>
+<td style="text-align:center">查看其它地址。与301类似。使用GET和POST请求查看</td>
+</tr>
+<tr>
+<td style="text-align:center">304</td>
+<td style="text-align:center">Not Modified</td>
+<td style="text-align:center">未修改。所请求的资源未修改，服务器返回此状态码时，不会返回任何资源。客户端通常会缓存访问过的资源，通过提供一个头信息指出客户端希望只返回在指定日期之后修改的资源</td>
+</tr>
+<tr>
+<td style="text-align:center">305</td>
+<td style="text-align:center">Use Proxy</td>
+<td style="text-align:center">使用代理。所请求的资源必须通过代理访问</td>
+</tr>
+<tr>
+<td style="text-align:center">306</td>
+<td style="text-align:center">Unused</td>
+<td style="text-align:center">当前未使用</td>
+</tr>
+<tr>
+<td style="text-align:center">307</td>
+<td style="text-align:center">Temporary Redirect</td>
+<td style="text-align:center">临时重定向。与302类似。使用GET请求重定向</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">400</td>
+<td style="text-align:center">Bad Request</td>
+<td style="text-align:center">客户端请求的语法错误，服务器无法理解</td>
+</tr>
+<tr>
+<td style="text-align:center">401</td>
+<td style="text-align:center">Unauthorized</td>
+<td style="text-align:center">请求要求用户的身份认证</td>
+</tr>
+<tr>
+<td style="text-align:center">402</td>
+<td style="text-align:center">Payment Required</td>
+<td style="text-align:center">保留，将来使用</td>
+</tr>
+<tr>
+<td style="text-align:center">403</td>
+<td style="text-align:center">Forbidden</td>
+<td style="text-align:center">服务器理解请求客户端的请求，但是拒绝执行此请求</td>
+</tr>
+<tr>
+<td style="text-align:center">404</td>
+<td style="text-align:center">Not Found</td>
+<td style="text-align:center">服务器无法根据客户端的请求找到资源（网页）。通过此代码，网站设计人员可设置”您所请求的资源无法找到”的个性页面</td>
+</tr>
+<tr>
+<td style="text-align:center">405</td>
+<td style="text-align:center">Method Not Allowed</td>
+<td style="text-align:center">客户端请求中的方法被禁止</td>
+</tr>
+<tr>
+<td style="text-align:center">406</td>
+<td style="text-align:center">Not Acceptable</td>
+<td style="text-align:center">服务器无法根据客户端请求的内容特性完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">407</td>
+<td style="text-align:center">Proxy Authentication Required</td>
+<td style="text-align:center">请求要求代理的身份认证，与401类似，但请求者应当使用代理进行授权</td>
+</tr>
+<tr>
+<td style="text-align:center">408</td>
+<td style="text-align:center">Request Time-out</td>
+<td style="text-align:center">服务器等待客户端发送的请求时间过长，超时</td>
+</tr>
+<tr>
+<td style="text-align:center">409</td>
+<td style="text-align:center">Conflict</td>
+<td style="text-align:center">服务器完成客户端的PUT请求是可能返回此代码，服务器处理请求时发生了冲突</td>
+</tr>
+<tr>
+<td style="text-align:center">410</td>
+<td style="text-align:center">Gone</td>
+<td style="text-align:center">客户端请求的资源已经不存在。410不同于404，如果资源以前有现在被永久删除了可使用410代码，网站设计人员可通过301代码指定资源的新位置</td>
+</tr>
+<tr>
+<td style="text-align:center">411</td>
+<td style="text-align:center">Length Required</td>
+<td style="text-align:center">服务器无法处理客户端发送的不带Content-Length的请求信息</td>
+</tr>
+<tr>
+<td style="text-align:center">412</td>
+<td style="text-align:center">Precondition Failed</td>
+<td style="text-align:center">客户端请求信息的先决条件错误</td>
+</tr>
+<tr>
+<td style="text-align:center">413</td>
+<td style="text-align:center">Request Entity Too Large</td>
+<td style="text-align:center">由于请求的实体过大，服务器无法处理，因此拒绝请求。为防止客户端的连续请求，服务器可能会关闭连接。如果只是服务器暂时无法处理，则会包含一个Retry-After的响应信息</td>
+</tr>
+<tr>
+<td style="text-align:center">414</td>
+<td style="text-align:center">Request-URI Too Large</td>
+<td style="text-align:center">请求的URI过长（URI通常为网址），服务器无法处理</td>
+</tr>
+<tr>
+<td style="text-align:center">415</td>
+<td style="text-align:center">Unsupported Media Type</td>
+<td style="text-align:center">服务器无法处理请求附带的媒体格式</td>
+</tr>
+<tr>
+<td style="text-align:center">416</td>
+<td style="text-align:center">Requested range not satisfiable</td>
+<td style="text-align:center">客户端请求的范围无效</td>
+</tr>
+<tr>
+<td style="text-align:center">417</td>
+<td style="text-align:center">Expectation Failed</td>
+<td style="text-align:center">服务器无法满足Expect的请求头信息</td>
+</tr>
+<tr>
+<td style="text-align:center"></td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center">500</td>
+<td style="text-align:center">Internal Server Error</td>
+<td style="text-align:center">服务器内部错误，无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">501</td>
+<td style="text-align:center">Not Implemented</td>
+<td style="text-align:center">服务器不支持请求的功能，无法完成请求</td>
+</tr>
+<tr>
+<td style="text-align:center">502</td>
+<td style="text-align:center">Bad Gateway</td>
+<td style="text-align:center">充当网关或代理的服务器，从远端服务器接收到了一个无效的请求</td>
+</tr>
+<tr>
+<td style="text-align:center">503</td>
+<td style="text-align:center">Service Unavailable</td>
+<td style="text-align:center">由于超载或系统维护，服务器暂时的无法处理客户端的请求。延时的长度可包含在服务器的Retry-After头信息中</td>
+</tr>
+<tr>
+<td style="text-align:center">504</td>
+<td style="text-align:center">Gateway Time-out</td>
+<td style="text-align:center">充当网关或代理的服务器，未及时从远端服务器获取请求</td>
+</tr>
+<tr>
+<td style="text-align:center">505</td>
+<td style="text-align:center">HTTP Version not supported</td>
+<td style="text-align:center">服务器不支持请求的HTTP协议的版本，无法完成处理</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+  
+    <footer class="article-footer">
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTTP/">HTTP</a></li></ul>
+
+    </footer>
+  
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2018/02/07/gdb-quick-reference/" id="article-nav-newer" class="article-nav-link-wrap">
+      <div class="article-nav-title"><span>&lt;</span>&nbsp;
+        
+          gdb速查表
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2018/01/02/event-loop-in-deep/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">深入理解Event Loop&nbsp;<span>&gt;</span></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <!-- 多说评论框 start -->
+  <div class="ds-thread" data-thread-key="post-http-status-code-ref" data-title="HTTP状态码查询表" data-url="https://gnipbao.github.io/2018/01/26/http-status-code-ref/"></div>
+  <!-- 多说评论框 end -->
+  <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:'gnip'};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+  <!-- 多说公共JS代码 end -->
+</section>
+</section>
+    <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2018 Gnip&nbsp;
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo.</a>
+
+    </div>
+  </div>
+</footer>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+  </div>
+</body>
+</html>
